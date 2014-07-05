@@ -1,0 +1,30 @@
+{
+  "version": "1.0",
+  "name": "Radio ELA App",
+  "description": "Aplicación Radio ELA",
+  "launch_path": "/index.html",
+  "icons": {
+    "16": "/img/radioelablog_txiki.jpg",
+    "48": "/img/radioelablog_txiki.jpg",
+    "128": "/img/radioelablog_txiki.jpg"
+  },
+  "developer": {
+    "name": "Radio ELA",
+    "url": "http://www.radioela.org"
+  },
+  "installs_allowed_from": [
+    "*"
+  ],
+  "locales": {
+    "en": {
+      "description": "Radio ELA",
+      "developer": {
+        "name": "Radio ELA",
+        "url": "http://www.radioela.org"
+      }
+    }
+  },
+  "default_locale": "es",
+  "permissions": {},
+  "fullscreen": "true"
+}
