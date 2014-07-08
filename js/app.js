@@ -1,3 +1,5 @@
+var rssLoaded = false;
+
 $(document).ready(function(){
 	var podcast = new PodcastPlayer("player_hq");
 });
@@ -14,10 +16,12 @@ function parseRSS(url, container) {
       $(xmlDoc).find("item").each(
       function(i,e){
       	console.log("Audio: " + $(e).find("enclosure").attr('url'));
-      	var thehtml = '<li><div class="link">"<a href="'+ $(e).find("enclosure").attr('url') +'" target="_blank">'+
+      	var color = ""
+      	var thehtml = '<li><div class="link"><a href="'+ $(e).find("enclosure").attr('url') +'" target="_blank">'+
       					$(e).find("title").text()+'</a></div></li>';
 //		console.log("Agregado capítulo: " + thehtml);        
         $(container).append(thehtml);
+        rssLoaded = true;
       }
       );
       
@@ -28,7 +32,7 @@ function parseRSS(url, container) {
 //      console.log("Agregado título: " + data.responseData.feed);
     }
   });
-}
+};
 
 var switchTab = function( idTab, idTabHide ){
 
@@ -36,7 +40,22 @@ var switchTab = function( idTab, idTabHide ){
     document.getElementById(idTabHide).style.zIndex='2';
     console.log("switch tab!");
     
-	parseRSS("http://radioela.org/spip.php?page=backend&id_rubrique=5","#episodes");
+    if (!rssLoaded)
+		parseRSS("http://radioela.org/spip.php?page=backend&id_rubrique=5","#episodes");
 
     console.log("salgo de switchTab");	
+}
+
+var playStreaming = function(player){
+
+	var audio = document.getElementById(player);
+	if(audio.paused){
+		console.log("PLAY!!!!" + player + audio.paused);
+		audio.play();
+	}
+	else{
+		console.log("STOP!!!!" + player);
+		audio.pause();
+	}
+		
 }

@@ -8,21 +8,14 @@
     <link rel="stylesheet" href="css/base.css">
     		
 
-<!--    <script type="text/javascript" src="js/jquery.js"></script>-->
-    
-<!--    <script type="text/javascript" src="js/jquery.min.js"></script>-->
-<!--    <script type="text/javascript" src="js/jsapi"></script>-->
-	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-    <script type="text/javascript" src="js/podcast.js"></script>
+    <script type="text/javascript" src="js/jquery.js"></script>
     <script type="text/javascript" src="js/base.js"></script>
     <script type="text/javascript" src="js/app.js"></script>
 	<title>Radio ELA</title>
 </head>
 
 <body>
-		<div id="header">
-			<p id="name">RADIO ELA</p>	
-		</div>
+		<div id="header">RADIO ELA</div>
 
 		<div id="buttons">
 			<div id="podcast_button" onclick="switchTab('streaming_tab','podcast_tab')" >Podcast</div>
@@ -30,16 +23,16 @@
 		</div>
 		
 		<div id="streaming_tab">
-			<div id="player_hq">
-				<p>SQ</p>	
-				<audio controls>
+			<div id="player_hq" onclick="playStreaming('audio_hq')">
+				Play SQ!!
+				<audio id="audio_sq">
 					<source src="http://radio.nodo50.org:8001/radioela.mp3" type="audio/mpeg" />
 					Tu navegador no es compatible con esta característica. 
 				</audio>
 			</div>
-			<div id="player_sq">
-				<p>HQ</p>	
-				<audio controls>
+			<div id="player_sq" onclick="playStreaming('audio_sq')">
+				Play HQ!!
+				<audio id="audio_hq">
 					<source src="http://radio.nodo50.org:8001/radioela.mp3" type="audio/mpeg" />
 					Tu navegador no es compatible con esta característica. 
 				</audio>
