@@ -122,3 +122,8 @@ a{
 	font-size:1em;
 }
 
+#player{
+	height: 0%;
+	width: 100%;
+}
+

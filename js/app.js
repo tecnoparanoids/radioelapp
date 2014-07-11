@@ -17,7 +17,7 @@ function parseRSS(url, container) {
       	console.log("Audio: " + $(e).find("enclosure").attr('url'));
       	var color = ""
       	var thehtml = '<li><div class="link" value="' + $(e).find("enclosure").attr('url') + '">' +
-      					$(e).find("title").text()+'</div></li>';
+      					$(e).find("title").text() + '</div></li>';
 //		console.log("Agregado capítulo: " + thehtml);        
         $(container).append(thehtml);
         rssLoaded = true;
@@ -43,30 +43,28 @@ var switchTab = function( idTab, idTabHide ){
 //    console.log("salgo de switchTab");	
 }
 
-var playStreaming = function(player){
-
-	var audio = document.getElementById(player);
-	if(audio.paused){
-		console.log("PLAY!!!!" + player);
-		audio.play();
-	}
-	else{
-		console.log("STOP!!!!" + player);
-		audio.pause();
-	}
-		
-}
-
 var playShow = function (link){
-	console.log("Programa clickado: " + $($(link).html()).attr('value'));
-	var audio = document.getElementById('podcast_player');
-	audio.src = $($(link).html()).attr('value');
+	console.log("Programa clickado: " + link);//$($(link).html()).attr('value'));
+	var audio = document.getElementById('audio_player');
+	
+	switch (link){
+		case "radio_sq":
+			audio.src = "http://radio.nodo50.org:8001/radioela.mp3";
+		break;
+		case "radio_hq":
+			audio.src = "http://radio.nodo50.org:8001/radioela.mp3";
+		break;
+		default:
+			audio.src = $($(link).html()).attr('value');
+			
+	}
+
 	if(audio.paused){
-		console.log("PLAY!!!!" + audio.src);
+		console.log("PLAY!!!! " + audio.src);
 		audio.play();
 	}
 	else{
-		console.log("STOP!!!!" + audio.src);
+		console.log("STOP!!!! " + audio.src);
 		audio.pause();
 	}
 }

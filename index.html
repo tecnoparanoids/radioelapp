@@ -23,32 +23,26 @@
 		</div>
 		
 		<div id="streaming_tab">
-			<div id="player_hq" onclick="playStreaming('audio_hq')">
-				Play SQ!!
-				<audio id="audio_sq">
-					<source src="http://radio.nodo50.org:8001/radioela.mp3" type="audio/mpeg" />
-					Tu navegador no es compatible con esta característica. 
-				</audio>
-			</div>
-			<div id="player_sq" onclick="playStreaming('audio_sq')">
+			<div id="player_hq" onclick="playShow('radio_hq')">
 				Play HQ!!
-				<audio id="audio_hq">
-					<source src="http://radio.nodo50.org:8001/radioela.mp3" type="audio/mpeg" />
-					Tu navegador no es compatible con esta característica. 
-				</audio>
 			</div>
-				
-			
+			<div id="player_sq" onclick="playShow('radio_sq')">
+				Play SQ!!
+			</div>
 		</div>
 	
 		<div id="podcast_tab" onclick="RSSParser()">
-			<audio id="podcast_player">
-				<source src="" type="audio/mpeg" />
-				Tu navegador no es compatible con esta característica. 
-			</audio>
 			<ul id="episodes">
 			</ul>
 
+		</div>
+			
+		<div id="player">
+			BOTONES PLAYER
+			<audio id="audio_player">
+				<source src="" type="audio/mpeg" />
+				Tu navegador no es compatible con esta característica. 
+			</audio>
 		</div>
 </body>
 
