@@ -1,6 +1,8 @@
 var rssLoaded = false;
+var playerShown = false;
 
 $(document).ready(function(){
+//	$('#player').hide();
 });
 
 function parseRSS(url, container) {
@@ -54,17 +56,36 @@ var playShow = function (link){
 		case "radio_hq":
 			audio.src = "http://radio.nodo50.org:8001/radioela.mp3";
 		break;
+		case "previous":
+//			audio.src = "http://radio.nodo50.org:8001/radioela.mp3";
+		break;
+		case "stop":
+			audio.pause();
+			$('#player').animate({top:'+=15%'}, 1000);
+			playerShown = false;
+			return;
+		break;
+		case "volumeup":
+			audio.volume += 0.1;
+			return;
+		break;
+		case "volumedown":
+			audio.volume -= 0.1;
+			return;
+		break;
 		default:
 			audio.src = $($(link).html()).attr('value');
 			
 	}
+	console.log("PLAY!!!! " + audio.src);
+	audio.play();
+//	showPlayer();
+//}
 
-	if(audio.paused){
-		console.log("PLAY!!!! " + audio.src);
-		audio.play();
-	}
-	else{
-		console.log("STOP!!!! " + audio.src);
-		audio.pause();
+//var showPlayer = function(){
+	console.log("Show player!");
+	if (!playerShown){
+		$('#player').animate({top:'-=15%'}, 1000);
+		playerShown = true;
 	}
 }
