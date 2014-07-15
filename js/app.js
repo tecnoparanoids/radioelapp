@@ -2,7 +2,7 @@ var rssLoaded = false;
 var playerShown = false;
 
 $(document).ready(function(){
-//	$('#player').hide();
+
 });
 
 function parseRSS(url, container) {
@@ -47,8 +47,20 @@ var switchTab = function( idTab, idTabHide ){
 
 var playShow = function (link){
 	console.log("Programa clickado: " + link);//$($(link).html()).attr('value'));
-	var audio = document.getElementById('audio_player');
 	
+	if(!playerShown){
+		// Mostramos mensaje de "Cargando..."
+//		$(document.getElementById("loading")).animate({top:'-=15%'}, 1000);
+		$(document.getElementById("loading")).show("normal");
+	}
+	
+	var audio = document.getElementById('audio_player');
+	audio.addEventListener("playing", function() {
+					if(playerShown){ 
+						$(document.getElementById("loading")).hide("slow");
+//						$(document.getElementById("loading")).animate({top:'+=15%'}, 1000);
+					}
+				}, true);
 	switch (link){
 		case "radio_sq":
 			audio.src = "http://radio.nodo50.org:8001/radioela.mp3";
@@ -57,11 +69,11 @@ var playShow = function (link){
 			audio.src = "http://radio.nodo50.org:8001/radioela.mp3";
 		break;
 		case "previous":
-//			audio.src = "http://radio.nodo50.org:8001/radioela.mp3";
 		break;
 		case "stop":
 			audio.pause();
-			$('#player').animate({top:'+=15%'}, 1000);
+			$('#player').animate({top:'+=15%'}, "slow");
+//			$('#loading').animate({top:'+=15%'}, 1000);
 			playerShown = false;
 			return;
 		break;
@@ -79,10 +91,7 @@ var playShow = function (link){
 	}
 	console.log("PLAY!!!! " + audio.src);
 	audio.play();
-//	showPlayer();
-//}
 
-//var showPlayer = function(){
 	console.log("Show player!");
 	if (!playerShown){
 		$('#player').animate({top:'-=15%'}, 1000);
