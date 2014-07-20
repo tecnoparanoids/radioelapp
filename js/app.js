@@ -2,10 +2,10 @@ var rssLoaded = false;
 var playerShown = false;
 
 $(document).ready(function(){
-
+	window.onerror = onError;
 });
 
-function parseRSS(url, container) {
+var parseRSS = function(url, container) {
   $.ajax({
     url: 'http://ajax.googleapis.com/ajax/services/feed/load?v=1.0&output=json_xml&num=10&callback=?&q=' + encodeURIComponent(url),
     dataType: 'json',
@@ -41,26 +41,30 @@ var switchTab = function( idTab, idTabHide ){
     
     if (!rssLoaded)
 		parseRSS("http://radioela.org/spip.php?page=backend&id_rubrique=5","#episodes");
-
-//    console.log("salgo de switchTab");	
-}
+};
 
 var playShow = function (link){
 	console.log("Programa clickado: " + link);//$($(link).html()).attr('value'));
 	
+	var loading = document.getElementById("loading");
+	
 	if(!playerShown){
 		// Mostramos mensaje de "Cargando..."
 //		$(document.getElementById("loading")).animate({top:'-=15%'}, 1000);
-		$(document.getElementById("loading")).show("normal");
+		$(loading).show("normal");
 	}
 	
 	var audio = document.getElementById('audio_player');
+	
 	audio.addEventListener("playing", function() {
 					if(playerShown){ 
-						$(document.getElementById("loading")).hide("slow");
+						$(loading).hide("slow");
 //						$(document.getElementById("loading")).animate({top:'+=15%'}, 1000);
 					}
 				}, true);
+	
+	audio.addEventListener('error', onError, true);
+	
 	switch (link){
 		case "radio_sq":
 			audio.src = "http://radio.nodo50.org:8001/radioela.mp3";
@@ -97,4 +101,30 @@ var playShow = function (link){
 		$('#player').animate({top:'-=15%'}, 1000);
 		playerShown = true;
 	}
-}
+};
+
+var onError = function(e) {
+	console.log("ERROR AL REPRODUCIR: " + e.target.error.code + e.target.src);
+
+//	$(loading).hide("fast");
+	switch (e.target.error.code) {
+		case e.target.error.MEDIA_ERR_ABORTED:
+			$(loading).text('Error: Reproducción abortada');
+		break;
+		case e.target.error.MEDIA_ERR_NETWORK:
+		   $(loading).text('Error al dercargar');
+		break;
+		case e.target.error.MEDIA_ERR_DECODE:
+		   $(loading).text('Error de decodificación');
+		break;
+		case e.target.error.MEDIA_ERR_SRC_NOT_SUPPORTED:
+		   $(loading).text('Error: formato no soportado');
+		break;
+		default:
+		   $(loading).text('Se ha producido un error');
+		break;
+	}
+	$('#player').animate({top:'+=15%'}, 1000);
+	$(loading).delay(5000).fadeOut("normal");	
+
+};
