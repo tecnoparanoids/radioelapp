@@ -2,7 +2,7 @@
   "version": "1.0",
   "name": "Radio ELA App",
   "description": "Aplicación HTML5 de Radio ELA",
-  "launch_path": "/index.html",
+  "launch_path": "/",
   "icons": {
     "16": "/img/radioelablog_txiki.jpg",
     "48": "/img/radioelablog_txiki.jpg",

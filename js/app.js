@@ -6,6 +6,8 @@ $(document).ready(function(){
 });
 
 var parseRSS = function(url, container) {
+	$(loading).text('DESCARGANDO PODCAST...');
+	$(loading).show("normal");
   $.ajax({
     url: 'http://ajax.googleapis.com/ajax/services/feed/load?v=1.0&output=json_xml&num=10&callback=?&q=' + encodeURIComponent(url),
     dataType: 'json',
@@ -16,17 +18,14 @@ var parseRSS = function(url, container) {
       
       $(xmlDoc).find("item").each(
       function(i,e){
-      	console.log("Audio: " + $(e).find("enclosure").attr('url'));
+//      	console.log("Audio: " + $(e).find("enclosure").attr('url'));
       	var color = ""
-      	var thehtml = '<li><div class="link" value="' + $(e).find("enclosure").attr('url') + '">' +
+      	var thehtml = "<li><div onclick='playShow(this)' class='link' value='" + $(e).find("enclosure").attr('url') + "'>" +
       					$(e).find("title").text() + '</div></li>';
-//		console.log("Agregado capítulo: " + thehtml);        
+		console.log("Agregado capítulo: " + thehtml);        
         $(container).append(thehtml);
         rssLoaded = true;
-        
-        $("#episodes li").click(function () {
-            playShow(this);
-        });
+		$(loading).fadeOut("slow");
       }
       );
     }
@@ -44,19 +43,20 @@ var switchTab = function( idTab, idTabHide ){
 };
 
 var playShow = function (link){
-	console.log("Programa clickado: " + link);//$($(link).html()).attr('value'));
 	
 	var loading = document.getElementById("loading");
 	
 	if(!playerShown){
 		// Mostramos mensaje de "Cargando..."
 //		$(document.getElementById("loading")).animate({top:'-=15%'}, 1000);
+		$(loading).text('CARGANDO...');
 		$(loading).show("normal");
 	}
 	
 	var audio = document.getElementById('audio_player');
 	
 	audio.addEventListener("playing", function() {
+					console.log("playing - hide loading");
 					if(playerShown){ 
 						$(loading).hide("slow");
 //						$(document.getElementById("loading")).animate({top:'+=15%'}, 1000);
@@ -90,7 +90,7 @@ var playShow = function (link){
 			return;
 		break;
 		default:
-			audio.src = $($(link).html()).attr('value');
+			audio.src = $(link).attr('value');
 			
 	}
 	console.log("PLAY!!!! " + audio.src);
@@ -104,9 +104,8 @@ var playShow = function (link){
 };
 
 var onError = function(e) {
-	console.log("ERROR AL REPRODUCIR: " + e.target.error.code + e.target.src);
+	console.log("ERROR AL REPRODUCIR: " + e.target.error.code + " - Audio: " + e.target.src);
 
-//	$(loading).hide("fast");
 	switch (e.target.error.code) {
 		case e.target.error.MEDIA_ERR_ABORTED:
 			$(loading).text('Error: Reproducción abortada');
@@ -125,6 +124,7 @@ var onError = function(e) {
 		break;
 	}
 	$('#player').animate({top:'+=15%'}, 1000);
+	playerShown = false;
 	$(loading).delay(5000).fadeOut("normal");	
 
 };
