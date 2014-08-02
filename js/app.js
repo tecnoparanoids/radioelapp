@@ -136,6 +136,10 @@ var playShow = function (link){
 	}
 };
 
+var downloadShow = function(){
+	console.log("downloadShow");
+};
+
 var onError = function(e) {
 
 	console.log("ERROR AL REPRODUCIR: " + e.target.error.code + " - Audio: " + e.target.src);
