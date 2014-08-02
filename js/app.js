@@ -33,11 +33,12 @@ var parseRSS = function(url, container) {
       					$(e).find("title").text() + "<div class='description'>" + $(items[i].content).text() + 
       					"</div></div><div onclick='playShow(this)' class='play_episode' value='" + 
       					$(e).find("enclosure").attr('url') + "'><img class='play_icon' src='img/play.jpeg' /></div>" + 
-      					"<div onclick='downloadShow(this)' value='" + $(e).find("enclosure").attr('url') + "' class='download' >" +
-      					"<img class='download_icon' src='img/download.png' /></div></li>'";
+//      					"<div onclick='downloadShow(this)' value='" + $(e).find("enclosure").attr('url') + "' class='download' >" +
+      					"<a href='" + $(e).find("enclosure").attr('url') + "' class='download' >" +
+      					"<img class='download_icon' src='img/download.png' /></a></li>'";
       					
 //		console.log("Agregado capítulo: " + thehtml);
-		console.log("Descripción: " + items[i].content);                
+//		console.log("Descripción: " + items[i].content);                
         $(container).append(thehtml);	// TODO: Optimizar esto, para que el append se haga solo una vez, no en cada ejecución del bucle
         rssLoaded = true;
 		$(loading).fadeOut("slow");
