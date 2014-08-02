@@ -13,17 +13,32 @@ var parseRSS = function(url, container) {
     dataType: 'json',
     success: function(data) {
     	var xml = data.responseData.xmlString;
+    	var rss = data.responseData.feed;
+		
+		var items = rss.entries || [];
+// 		console.log(items);
+  		for (var i = 0; i < items.length; i++) {
+    		var entry = items[i];
+    		var content = $(items[i].content).text();
+//    		console.log(content);
+		}
 //      console.log(xml);
       var xmlDoc = $.parseXML(xml);
       
       $(xmlDoc).find("item").each(
       function(i,e){
 //      	console.log("Audio: " + $(e).find("enclosure").attr('url'));
-      	var color = ""
-      	var thehtml = "<li><div onclick='playShow(this)' class='link' value='" + $(e).find("enclosure").attr('url') + "'>" +
-      					$(e).find("title").text() + '</div></li>';
-		console.log("Agregado capítulo: " + thehtml);        
-        $(container).append(thehtml);
+
+      	var thehtml = "<li><div onclick='showDescription(this)' class='link' >" +
+      					$(e).find("title").text() + "<div class='description'>" + $(items[i].content).text() + 
+      					"</div></div><div onclick='playShow(this)' class='play_episode' value='" + 
+      					$(e).find("enclosure").attr('url') + "'><img class='play_icon' src='img/play.jpeg' /></div>" + 
+      					"<div onclick='downloadShow(this)' value='" + $(e).find("enclosure").attr('url') + "' class='download' >" +
+      					"<img class='download_icon' src='img/download.png' /></div></li>'";
+      					
+//		console.log("Agregado capítulo: " + thehtml);
+		console.log("Descripción: " + items[i].content);                
+        $(container).append(thehtml);	// TODO: Optimizar esto, para que el append se haga solo una vez, no en cada ejecución del bucle
         rssLoaded = true;
 		$(loading).fadeOut("slow");
       }
@@ -41,6 +56,24 @@ var switchTab = function( idTab, idTabHide ){
     if (!rssLoaded)
 		parseRSS("http://radioela.org/spip.php?page=backend&id_rubrique=5","#episodes");
 };
+
+var showDescription = function(link){
+//	console.log($($(link).html()).text());
+	console.log($(link.querySelectorAll(".description")));
+	var description = $(link.querySelectorAll(".description")).text();
+	var details = document.getElementById("details");
+	console.log(description);
+	details.innerHTML = description;
+	
+	$("#details").fadeIn("slow");
+	$("#play_episode").fadeIn("slow");
+	$("#download").fadeIn("slow");
+	
+}
+
+var hideDescription = function(){
+	$("#details").fadeOut("slow");
+}
 
 var playShow = function (link){
 	
@@ -104,6 +137,7 @@ var playShow = function (link){
 };
 
 var onError = function(e) {
+
 	console.log("ERROR AL REPRODUCIR: " + e.target.error.code + " - Audio: " + e.target.src);
 
 	switch (e.target.error.code) {

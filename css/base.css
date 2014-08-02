@@ -105,24 +105,79 @@ audio{
 	
 }
 
+#details{
+	display: none;
+	z-index: 2;
+	position: absolute;
+	margin-top: 20%;
+	margin-left: 3%;
+	height: 70%;
+	width: 95%;
+	background-color: white;
+	font-size:1em;
+	text-align:center;
+	overflow-y: scroll;
+}
+
+
 #episodes{
-	padding:0;
+	display: inline-block;
+	padding: 0;
 	margin-top: 15%;
-	margin-left: 0%;
+	left: 0%;
 	list-style-type: none;
+/*	overflow:hidden;*/
+/*	text-overflow:ellipsis;*/
 /*	position: absolute;*/
 	height: 90%;
 	width: 100%;
 }
 .link{
-	margin-left:0;
+	display: inline-block;
+	padding:0;
 	left:0;
-	width: 98%;
+	width: 80%;
 	height:100%;
 	white-space: nowrap;
-	text-overflow: hidden;
+	overflow:hidden;
+	text-overflow:ellipsis;
+	font-size:0.8em;
 	border:2px solid black;
 	background-color: #d3d3d3;
+}
+
+.play_episode{
+/*	padding: 0;*/
+	display:inline;
+	width: 5%;
+	height: 100%;
+	left: 95;	
+/*	background-color:blue;*/
+}
+
+.play_icon{
+	width: 9%;
+	height: 100%;
+}
+
+.download{
+/*	padding: 0;*/
+	display: inline;
+	width:5%;
+	height:100%;
+	left: 95%;	
+/*	background-color:blue;*/
+}
+
+.download_icon{
+	width: 9%;
+	height: 100%;
+}
+
+.description{
+	display: none;
+	width: 0%;
+	height: 0%;
 }
 
 li{
