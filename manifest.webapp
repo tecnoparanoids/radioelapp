@@ -33,6 +33,5 @@
 			"description": "Permiso para descargar ficheros mp3 en la tarjta SD",
 			"access": "readwrite" }
   },
-  "type": "privileged",
   "fullscreen": "true"
 }

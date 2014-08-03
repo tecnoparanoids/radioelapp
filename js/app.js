@@ -140,10 +140,10 @@ var playShow = function (link){
 var downloadShow = function(link){
 
 //FIREFOX OS
-	console.log("Carpeta de música: " + navigator.getDeviceStorage('music').storageName);
-	var fileURL = navigator.getDeviceStorage('music').storageName + "temp.mp3";
+//	console.log("Carpeta de música: " + navigator.getDeviceStorage('music').storageName);
+//	var fileURL = navigator.getDeviceStorage('music').storageName + "temp.mp3";
 
-	console.log("fileUrl: " + fileURL);
+//	console.log("fileUrl: " + fileURL);
 	
 // ANDROID	
 //	var fileTransfer = new FileTransfer();
