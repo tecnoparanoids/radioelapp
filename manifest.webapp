@@ -26,7 +26,12 @@
   },
   "default_locale": "es",
   "permissions": {
-  	  "device-storage:music":{ "access": "readwrite" }
+		"device-storage:music":{ 
+			"description": "Permiso para escribir en la carpeta de almacenamiento de música",
+			"access": "readwrite" },
+		"device-storage:sdcard":{
+			"description": "Permiso para descargar ficheros mp3 en la tarjta SD",
+			"access": "readwrite" }
   },
   "fullscreen": "true"
 }

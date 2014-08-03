@@ -34,7 +34,7 @@ var parseRSS = function(url, container) {
       					"</div></div><div onclick='playShow(this)' class='play_episode' value='" + 
       					$(e).find("enclosure").attr('url') + "'><img class='play_icon' src='img/play.jpeg' /></div>" + 
 //      					"<div onclick='downloadShow(this)' value='" + $(e).find("enclosure").attr('url') + "' class='download' >" +
-      					"<div class='download' ><a href='" + $(e).find("enclosure").attr('url') + "' download>" +
+      					"<div class='download' ><a href='" + $(e).find("enclosure").attr('url') + "'>" +
       					"<img class='download_icon' src='img/download.png' /></a></div></li>'";
       					
 //		console.log("Agregado capítulo: " + thehtml);
