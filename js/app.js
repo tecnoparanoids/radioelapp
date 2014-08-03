@@ -137,8 +137,36 @@ var playShow = function (link){
 	}
 };
 
-var downloadShow = function(){
-	console.log("downloadShow");
+var downloadShow = function(link){
+
+//FIREFOX OS
+	console.log("Carpeta de música: " + navigator.getDeviceStorage('music').storageName);
+	var fileURL = navigator.getDeviceStorage('music').storageName + "temp.mp3";
+
+	console.log("fileUrl: " + fileURL);
+	
+// ANDROID	
+//	var fileTransfer = new FileTransfer();
+//	var uri = encodeURI("https://archive.org/download/rataskoloradas_28/r28.mp3");
+
+//	fileTransfer.download(
+//		uri,
+//		fileURL,
+//		function(entry) {
+//		    console.log("download complete: " + entry.toURL());
+//		},
+//		function(error) {
+//		    console.log("download error source " + error.source);
+//		    console.log("download error target " + error.target);
+//		    console.log("upload error code" + error.code);
+//		},
+//		false,
+//		{
+//		    headers: {
+//		        "Authorization": "Basic dGVzdHVzZXJuYW1lOnRlc3RwYXNzd29yZA=="
+//		    }
+//		}
+//	);
 };
 
 var onError = function(e) {

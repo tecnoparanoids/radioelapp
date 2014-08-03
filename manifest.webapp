@@ -25,6 +25,8 @@
     }
   },
   "default_locale": "es",
-  "permissions": {},
+  "permissions": {
+  	  "device-storage:music":{ "access": "readwrite" }
+  },
   "fullscreen": "true"
 }
