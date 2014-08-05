@@ -9,7 +9,7 @@ var parseRSS = function(url, container) {
 	$(loading).text('DESCARGANDO PODCAST...');
 	$(loading).show("normal");
   $.ajax({
-    url: 'http://ajax.googleapis.com/ajax/services/feed/load?v=1.0&output=json_xml&num=10&callback=?&q=' + encodeURIComponent(url),
+    url: 'http://ajax.googleapis.com/ajax/services/feed/load?v=1.0&output=json_xml&num=15&callback=?&q=' + encodeURIComponent(url),
     dataType: 'json',
     success: function(data) {
     	var xml = data.responseData.xmlString;
@@ -36,7 +36,7 @@ var parseRSS = function(url, container) {
 //      					"<div onclick='downloadShow(this)' value='" + $(e).find("enclosure").attr('url') + "' class='download' >" +
       					"<div class='download' onclick='downloadShow(this)' value='"+ $(e).find("enclosure").attr('url') + 
 //      					"'><a href='" + $(e).find("enclosure").attr('url') + "'>" +
-      					"'><img class='download_icon' src='img/download.png' /></div></li>'";
+      					"'><img class='download_icon' src='img/download.png' /></div></li>";
       					
 //		console.log("Agregado capítulo: " + thehtml);
 //		console.log("Descripción: " + items[i].content);                
