@@ -7,7 +7,7 @@ $(document).ready(function(){
 
 var parseRSS = function(url, container) {
 	$(loading).text('DESCARGANDO PODCAST...');
-	$(loading).show("normal");
+//	$(loading).show("normal");
   $.ajax({
     url: 'http://ajax.googleapis.com/ajax/services/feed/load?v=1.0&output=json_xml&num=15&callback=?&q=' + encodeURIComponent(url),
     dataType: 'json',
@@ -32,7 +32,7 @@ var parseRSS = function(url, container) {
       	var thehtml = "<li class='item_list' ><div onclick='showDescription(this)' class='link' >" +
       					$(e).find("title").text() + "<div class='description'>" + $(items[i].content).text() + 
       					"</div></div><div onclick='playShow(this)' class='play_episode' value='" + 
-      					$(e).find("enclosure").attr('url') + "'><img class='play_icon' src='img/play.jpeg' /></div>" + 
+      					$(e).find("enclosure").attr('url') + "'><img class='play_icon' src='img/play.png' /></div>" + 
 //      					"<div onclick='downloadShow(this)' value='" + $(e).find("enclosure").attr('url') + "' class='download' >" +
       					"<div class='download' onclick='downloadShow(this)' value='"+ $(e).find("enclosure").attr('url') + 
 //      					"'><a href='" + $(e).find("enclosure").attr('url') + "'>" +
@@ -85,7 +85,7 @@ var playShow = function (link){
 		// Mostramos mensaje de "Cargando..."
 //		$(document.getElementById("loading")).animate({top:'-=15%'}, 1000);
 		$(loading).text('CARGANDO...');
-		$(loading).show("normal");
+//		$(loading).show("normal");
 	}
 	
 	var audio = document.getElementById('audio_player');
