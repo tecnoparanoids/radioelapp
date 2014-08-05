@@ -29,13 +29,14 @@ var parseRSS = function(url, container) {
       function(i,e){
 //      	console.log("Audio: " + $(e).find("enclosure").attr('url'));
 
-      	var thehtml = "<li><div onclick='showDescription(this)' class='link' >" +
+      	var thehtml = "<li class='item_list' ><div onclick='showDescription(this)' class='link' >" +
       					$(e).find("title").text() + "<div class='description'>" + $(items[i].content).text() + 
       					"</div></div><div onclick='playShow(this)' class='play_episode' value='" + 
       					$(e).find("enclosure").attr('url') + "'><img class='play_icon' src='img/play.jpeg' /></div>" + 
 //      					"<div onclick='downloadShow(this)' value='" + $(e).find("enclosure").attr('url') + "' class='download' >" +
-      					"<div class='download' ><a href='" + $(e).find("enclosure").attr('url') + "'>" +
-      					"<img class='download_icon' src='img/download.png' /></a></div></li>'";
+      					"<div class='download' onclick='downloadShow(this)' value='"+ $(e).find("enclosure").attr('url') + 
+//      					"'><a href='" + $(e).find("enclosure").attr('url') + "'>" +
+      					"'><img class='download_icon' src='img/download.png' /></div></li>'";
       					
 //		console.log("Agregado capítulo: " + thehtml);
 //		console.log("Descripción: " + items[i].content);                
@@ -140,33 +141,35 @@ var playShow = function (link){
 var downloadShow = function(link){
 
 //FIREFOX OS
-//	console.log("Carpeta de música: " + navigator.getDeviceStorage('music').storageName);
+	console.log("Carpeta de música: " + navigator.getDeviceStorage('music').storageName);
 //	var fileURL = navigator.getDeviceStorage('music').storageName + "temp.mp3";
-
-//	console.log("fileUrl: " + fileURL);
 	
 // ANDROID	
-//	var fileTransfer = new FileTransfer();
-//	var uri = encodeURI("https://archive.org/download/rataskoloradas_28/r28.mp3");
+	var fileTransfer = new FileTransfer();
 
-//	fileTransfer.download(
-//		uri,
-//		fileURL,
-//		function(entry) {
-//		    console.log("download complete: " + entry.toURL());
-//		},
-//		function(error) {
-//		    console.log("download error source " + error.source);
-//		    console.log("download error target " + error.target);
-//		    console.log("upload error code" + error.code);
-//		},
-//		false,
-//		{
-//		    headers: {
-//		        "Authorization": "Basic dGVzdHVzZXJuYW1lOnRlc3RwYXNzd29yZA=="
-//		    }
-//		}
-//	);
+	var uri = encodeURI($(link).attr('value'));
+	var fileName = fileURL.substr(fileURL.lastIndexOf('/')+1);
+
+	console.log("fileUrl: " + fileURL + " fileName; " + fileName);
+
+	fileTransfer.download(
+		uri,
+		fileURL,
+		function(entry) {
+		    console.log("download complete: " + entry.toURL());
+		},
+		function(error) {
+		    console.log("download error source " + error.source);
+		    console.log("download error target " + error.target);
+		    console.log("upload error code" + error.code);
+		},
+		false,
+		{
+		    headers: {
+		        "Authorization": "Basic dGVzdHVzZXJuYW1lOnRlc3RwYXNzd29yZA=="
+		    }
+		}
+	);
 };
 
 var onError = function(e) {

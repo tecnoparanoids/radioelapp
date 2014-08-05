@@ -28,7 +28,7 @@ if (navigator.mozApps) {
                     install.style.display = "none";
                 };
                 installApp.onerror = function() {
-                    alert("Install failed\n\n:" + installApp.error.name);
+                    alert("Fallo en la instalación:\n\n" + installApp.error.name);
                 };
             };
         }
