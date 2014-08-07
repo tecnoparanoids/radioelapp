@@ -31,7 +31,10 @@
 			"access": "readwrite" },
 		"device-storage:sdcard":{
 			"description": "Permiso para descargar ficheros mp3 en la tarjta SD",
-			"access": "readwrite" }
+			"access": "readwrite" },
+		"audio-channel-content": {
+    		"description": "Permiso para usar el canal de audio content y no pausar la reproducción al pasar la app a background"
+		}
   },
   "fullscreen": "true"
 }
