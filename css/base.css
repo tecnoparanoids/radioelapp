@@ -191,10 +191,10 @@ li{
 	margin-left: 0%;
 }
 
-a{
-	margin: 0%;
-	font-size:1em;
-}
+/*a{*/
+/*	margin: 0%;*/
+/*	font-size:1em;*/
+/*}*/
 
 #player{
 	z-index: 4;
