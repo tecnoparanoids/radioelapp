@@ -28,7 +28,7 @@
   "permissions": {
 		"audio-channel-content":{
 			"description":"Use the audio channel for the music player"
-		}.
+		},
 		"device-storage:music":{ 
 			"description":"Permiso para escribir en la carpeta de almacenamiento de música",
 			"access": "readwrite" },
