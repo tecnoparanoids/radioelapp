@@ -84,7 +84,7 @@ var playShow = function (link){
 	if(!playerShown){
 		// Mostramos mensaje de "Cargando..."
 //		$(document.getElementById("loading")).animate({top:'-=15%'}, 1000);
-		$(loading).text('Cargando streaming...');
+		$(loading).text('Cargando audio...');
 		$(loading).fadeIn("normal");
 	}
 	
@@ -102,15 +102,30 @@ var playShow = function (link){
 	
 	switch (link){
 		case "radio_sq":
-			audio.src = "http://radio.nodo50.org:8001/radioela.mp3";
+			if(audio.paused){
+				document.getElementById("play_sq").src = "img/pause.png";
+				audio.src = "http://radio.nodo50.org:8001/radioela.mp3";
+			}
+			else{
+				audio.pause();
+				return;
+			}
 		break;
 		case "radio_hq":
-			audio.src = "http://radio.nodo50.org:8001/radioela.mp3";
+			if(audio.paused){
+				document.getElementById("play_hq").src = "img/pause.png";
+				audio.src = "http://radio.nodo50.org:8001/radioela.mp3";
+			}		
+			else{
+				audio.pause();
+				return;
+			}
 		break;
 		case "previous":
 		break;
 		case "stop":
 			audio.pause();
+			document.getElementById("player_sq").src = "img/play.png";
 			$('#player').animate({top:'+=15%'}, "slow");
 //			$('#loading').animate({top:'+=15%'}, 1000);
 			playerShown = false;
@@ -197,5 +212,7 @@ var onError = function(e) {
 	$('#player').animate({top:'+=15%'}, 1000);
 	playerShown = false;
 	$(loading).delay(5000).fadeOut("normal");	
+	document.getElementById("play_sq").src = "img/play.png";	
+	document.getElementById("play_hq").src = "img/play.png";	
 
 };
