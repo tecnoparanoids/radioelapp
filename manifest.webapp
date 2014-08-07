@@ -26,15 +26,15 @@
   },
   "default_locale": "es",
   "permissions": {
+		"audio-channel-content":{
+			"description":"Use the audio channel for the music player"
+		}.
 		"device-storage:music":{ 
-			"description": "Permiso para escribir en la carpeta de almacenamiento de música",
+			"description":"Permiso para escribir en la carpeta de almacenamiento de música",
 			"access": "readwrite" },
 		"device-storage:sdcard":{
-			"description": "Permiso para descargar ficheros mp3 en la tarjta SD",
-			"access": "readwrite" },
-		"audio-channel-content": {
-    		"description": "Permiso para usar el canal de audio content y no pausar la reproducción al pasar la app a background"
-		}
+			"description":"Permiso para descargar ficheros mp3 en la tarjeta SD",
+			"access": "readwrite" }
   },
   "fullscreen": "true"
 }

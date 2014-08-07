@@ -129,6 +129,7 @@ var playShow = function (link){
 			
 	}
 	console.log("PLAY!!!! " + audio.src);
+	audio.mozAudioChannelType = 'content';
 	audio.play();
 
 	console.log("Show player!");
