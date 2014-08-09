@@ -104,7 +104,9 @@ var playShow = function (link){
 		case "radio_sq":
 			if(audio.paused){
 				document.getElementById("play_sq").src = "img/pause.png";
-				audio.src = "http://radio.nodo50.org:8001/radioela.mp3";
+//				audio.src = "http://radio.nodo50.org:8001/radioela.mp3";
+//				audio.src = "https://streaming.nodo50.org:2199/tunein/radioelastream.pls";
+				audio.src = "https://streaming.nodo50.org:2199/tunein/radioelastream.asx";
 			}
 			else{
 				audio.pause();
@@ -118,6 +120,7 @@ var playShow = function (link){
 			}		
 			else{
 				audio.pause();
+				document.getElementById("play_sq").src = "img/play.png";
 				return;
 			}
 		break;
@@ -125,7 +128,8 @@ var playShow = function (link){
 		break;
 		case "stop":
 			audio.pause();
-			document.getElementById("player_sq").src = "img/play.png";
+			document.getElementById("play_sq").src = "img/play.png";
+			document.getElementById("play_hq").src = "img/play.png";
 			$('#player').animate({top:'+=15%'}, "slow");
 //			$('#loading').animate({top:'+=15%'}, 1000);
 			playerShown = false;
