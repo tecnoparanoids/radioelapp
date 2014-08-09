@@ -109,6 +109,7 @@ var playShow = function (link){
 				audio.src = "https://streaming.nodo50.org:2199/tunein/radioelastream.asx";
 			}
 			else{
+				document.getElementById("play_sq").src = "img/play.png";
 				audio.pause();
 				return;
 			}
@@ -120,16 +121,16 @@ var playShow = function (link){
 			}		
 			else{
 				audio.pause();
-				document.getElementById("play_sq").src = "img/play.png";
+				document.getElementById("play_hq").src = "img/play.png";
 				return;
 			}
 		break;
 		case "previous":
 		break;
 		case "stop":
-			audio.pause();
 			document.getElementById("play_sq").src = "img/play.png";
 			document.getElementById("play_hq").src = "img/play.png";
+			audio.pause();
 			$('#player').animate({top:'+=15%'}, "slow");
 //			$('#loading').animate({top:'+=15%'}, 1000);
 			playerShown = false;
