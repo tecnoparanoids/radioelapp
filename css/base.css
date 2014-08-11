@@ -32,7 +32,6 @@ body{
 	height:100%;
 	width:50%;
 	background-color:red;
-
 }
 
 #podcast_button {
@@ -43,6 +42,8 @@ body{
     vertical-align: middle;
 	background-color:white;
 	margin-left: 50%;
+	border-bottom: 2px solid  black;
+	border-left: 2px solid  black;
 }
 
 #name{

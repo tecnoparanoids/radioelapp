@@ -79,6 +79,7 @@ var hideDescription = function(){
 
 var playShow = function (link){
 	
+	console.log("playShow: " + link);
 	var loading = document.getElementById("loading");
 	
 	if(!playerShown){
@@ -161,11 +162,21 @@ var playShow = function (link){
 
 var downloadShow = function(link){
 
-//FIREFOX OS
-	console.log("Carpeta de música: " + navigator.getDeviceStorage('music').storageName);
+// FIREFOX OS ** Tiene 
+//	console.log("Carpeta de música: " + cordova.file.externalApplicationStorageDirectory);
 //	var fileURL = navigator.getDeviceStorage('music').storageName + "temp.mp3";
 	
-// ANDROID	
+
+// Fyle System API ** Intenta ser un standar pero no lo implementa más que Chrome de momento
+	function onInitFs(fs) {
+	  console.log('Opened file system: ' + fs.name);
+	}
+
+	console.log("window.requestFileSystem: " + window.requestFileSystem);
+	window.requestFileSystem(window.TEMPORARY, 5*1024*1024 /*5MB*/, onInitFs, onError);
+
+// 	org.apache.cordova.file-transfer ** No soportado aún en Firefox OS
+/*
 	var fileTransfer = new FileTransfer();
 
 	var uri = encodeURI($(link).attr('value'));
@@ -191,6 +202,7 @@ var downloadShow = function(link){
 		    }
 		}
 	);
+	*/
 };
 
 var onError = function(e) {

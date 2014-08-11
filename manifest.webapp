@@ -2,7 +2,9 @@
   "version": "1.0",
   "name": "Radio ELApp",
   "description": "Aplicación HTML5 de Radio ELA",
-  "launch_path": "/",
+  "launch_path": "http://tecnoparanoids.github.io/radioelapp.zip",
+  "type": "privileged",
+  "fullscreen": "false",
   "icons": {
     "16": "/img/radioelablog_txiki.jpg",
     "48": "/img/radioelablog_txiki.jpg",
@@ -26,15 +28,16 @@
   },
   "default_locale": "es",
   "permissions": {
-		"audio-channel-content":{
-			"description":"Use the audio channel for the music player"
-		},
-		"device-storage:music":{ 
-			"description":"Permiso para escribir en la carpeta de almacenamiento de música",
-			"access": "readwrite" },
-		"device-storage:sdcard":{
-			"description":"Permiso para descargar ficheros mp3 en la tarjeta SD",
-			"access": "readwrite" }
-  },
-  "fullscreen": "true"
+    "audio-channel-content": {
+      "description": "Use the audio channel for the music player"
+    },
+    "device-storage:music": {
+      "description": "Permiso para escribir en la carpeta de almacenamiento de música",
+      "access": "readwrite"
+    },
+    "device-storage:sdcard": {
+      "description": "Permiso para descargar ficheros mp3 en la tarjeta SD",
+      "access": "readwrite"
+    }
+  }
 }
