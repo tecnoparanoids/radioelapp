@@ -2,7 +2,7 @@
   "version": "1.0",
   "name": "Radio ELApp",
   "description": "Aplicación HTML5 de Radio ELA",
-  "launch_path": "http://tecnoparanoids.github.io/radioelapp.zip",
+  "launch_path": "/radioelapp.zip",
   "type": "privileged",
   "fullscreen": "false",
   "icons": {
@@ -11,7 +11,7 @@
     "128": "/img/radioelablog_txiki.jpg"
   },
   "developer": {
-    "name": "Radio ELA",
+    "name": "ELA-dev",
     "url": "http://www.radioela.org"
   },
   "installs_allowed_from": [
@@ -21,7 +21,7 @@
     "es": {
       "description": "Radio ELA",
       "developer": {
-        "name": "Radio ELA",
+        "name": "ELA-dev",
         "url": "http://www.radioela.org"
       }
     }
