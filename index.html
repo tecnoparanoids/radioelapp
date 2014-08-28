@@ -8,9 +8,9 @@
     <link rel="stylesheet" href="css/base.css">
     		
 
-    <script type="text/javascript" src="js/jquery.js"></script>
-    <script type="text/javascript" src="js/base.js"></script>
-    <script type="text/javascript" src="js/app.js"></script>
+    <script type="application/javascript" src="js/jquery.js"></script>
+    <script type="application/javascript" src="js/base.js"></script>
+    <script type="application/javascript" src="js/app.js"></script>
 	<title>Radio ELApp</title>
 </head>
 
@@ -18,20 +18,18 @@
 		<div id="header">Radio ELA</div>
 
 		<div id="buttons">
-			<div id="podcast_button" onclick="switchTab('streaming_tab','podcast_tab')" >Podcast</div>
-			<div id="streaming_button" onclick="switchTab('podcast_tab', 'streaming_tab')" >Streaming</div>		
+			<div id="podcast_button" >Podcast</div>
+			<div id="streaming_button" >Streaming</div>		
 		</div>
 		
 		<div id="streaming_tab">
-			<div id="player_hq" onclick="playShow('radio_hq')">Play 64kbps<img id="play_hq" class="streaming_button" src="img/play.png" />
-			</div>
-			<div id="player_sq" onclick="playShow('radio_sq')">Play 24kbps<img id="play_sq" class="streaming_button" src="img/play.png" />
-			</div>
+			<div id="player_hq">Play 64kbps<img id="play_hq" class="streaming_button" src="img/play.png" /></div>
+			<div id="player_sq">Play 24kbps<img id="play_sq" class="streaming_button" src="img/play.png" /></div>
 			<div id="install">INSTALAR</div>
 		</div>
 	
 		<div id="podcast_tab">
-			<div id="details" onclick="hideDescription()"></div>
+			<div id="details" ></div>
 			<ul id="episodes">
 				<!--	Aquí va a venir algo como esto por cada artículo del podcast:
 						<li>
@@ -43,10 +41,10 @@
 		</div>
 			
 		<div id="player">
-			<div id="mute" onclick="playShow('previous')"><img class="player_button" src="img/mute.png" /></div>
-			<div id="stop" onclick="playShow('stop')"><img class="player_button" src="img/stop.png" /></div>
-			<div id="volumedown" onclick="playShow('volumedown')"><img class="player_button" src="img/volumedown.png" /></div>
-			<div id="volumeup" onclick="playShow('volumeup')"><img class="player_button" src="img/volumeup.png" /></div>			
+			<div id="mute" ><img class="player_button" src="img/mute.png" /></div>
+			<div id="stop" ><img class="player_button" src="img/stop.png" /></div>
+			<div id="volumedown" ><img class="player_button" src="img/volumedown.png" /></div>
+			<div id="volumeup" ><img class="player_button" src="img/volumeup.png" /></div>			
 			<audio id="audio_player">
 				<source mozaudiochannel="content" preload="none" src="" type="audio/mpeg" />
 				Tu navegador no es compatible con esta característica. 

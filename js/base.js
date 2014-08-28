@@ -2,7 +2,7 @@
 if (navigator.mozApps) {
     var checkIfInstalled = navigator.mozApps.getSelf();
     checkIfInstalled.onsuccess = function () {
-        if (checkIfInstalled.result) {
+        if (!checkIfInstalled.result) {
             // Already installed
         }
         else {
