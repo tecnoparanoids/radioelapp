@@ -161,7 +161,8 @@ audio{
 
 .episode_logo{
 	float: left;
-	width: 15%;
+	width: 4em;
+	margin: 0.5em;
 }
 
 .item_list{
