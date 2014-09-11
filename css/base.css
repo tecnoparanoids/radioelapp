@@ -159,6 +159,11 @@ audio{
 	color:#2C393B;
 }
 
+.episode_logo{
+	float: left;
+	width: 15%;
+}
+
 .item_list{
 	border-bottom: 1px solid  #00AACC;
 	padding-top: 0.5em;

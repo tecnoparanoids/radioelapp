@@ -47,22 +47,34 @@ var parseRSS = function() {
 		success: function(data) {
 			var xml = data.responseData.xmlString;
 			var rss = data.responseData.feed;
-		
 			var items = rss.entries || [];
-	// 		console.log(items);
+//	 		console.log(items);
 	  		for (var i = 0; i < items.length; i++) {
 				var entry = items[i];
 				var content = $(items[i].content).text();
-	//    		console.log(content);
+//	    		console.log(content);
 			}
-	//      console.log(xml);
+//	      console.log(xml);
 		  	var xmlDoc = $.parseXML(xml);
 		  	var thehtml = "";
 			$(xmlDoc).find("item").each(
 				function(i,e){
-				//      	console.log("Audio: " + $(e).find("enclosure").attr('url'));
+//				console.log(e);
+				var img = "";
+				// miramos si el artículo lleva logo
+				if(e.childNodes[5].firstChild){
+					var data = e.childNodes[5].firstChild.data;
+				
+					var init = e.childNodes[5].firstChild.data.indexOf("src") + 5;
+					var end = e.childNodes[5].firstChild.data.indexOf("width") - 2;
+				
+					img = "<img src='" + data.substring(init,end) + "' class='episode_logo'>";
+				
+			  	}
+			  	
+			  	console.log(img);
 
-				thehtml += "<li class='item_list' ><div onclick='showDescription(this)' class='link' >" +
+				thehtml += "<li class='item_list' >" + img + "<div onclick='showDescription(this)' class='link' >" +
 								$(e).find("title").text() + "<div class='description'>" + $(items[i].content).text() + 
 								"</div></div><div onclick='playShow(this)' class='play_episode' value='" + 
 								$(e).find("enclosure").attr('url') + "'></div>" + 
