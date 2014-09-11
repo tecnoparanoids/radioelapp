@@ -64,11 +64,12 @@ var parseRSS = function() {
 				// miramos si el artículo lleva logo
 				if(e.childNodes[5].firstChild){
 					var data = e.childNodes[5].firstChild.data;
-				
+									
 					var init = e.childNodes[5].firstChild.data.indexOf("src") + 5;
 					var end = e.childNodes[5].firstChild.data.indexOf("width") - 2;
 				
-					img = "<img src='" + data.substring(init,end) + "' class='episode_logo'>";
+					if (init != 4)
+						img = "<img src='" + data.substring(init,end) + "' class='episode_logo'>";
 				
 			  	}
 			  	
