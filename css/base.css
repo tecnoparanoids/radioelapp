@@ -72,27 +72,40 @@ audio{
 /*	display:none;*/
 }
 
-#player_hq{
-	position: absolute;
-	width:35%;
-	height:20%;
-	top:20%;
-	left:10%;
-	text-align:center;
-	font-size:1.3em;
+/*#player_hq{*/
 
+/*}*/
+
+.playing{
+	position: absolute;
+	width:14%;
+	height:18%;
+	top:30%;
+	left:45%;
+	background-image: url("../img/pause.png");
 }
 
-#player_sq{
+.paused{
 	position: absolute;
-	top: 20%;
-	left: 60%;
-	height:20%;
-	width:35%;
-
-	text-align:center;
-	font-size:1.3em;
+	width:14%;
+	height:18%;
+	top:30%;
+	left:45%;
+	background-image: url("../img/play.png");
 }
+
+/*#player_sq{*/
+/*	position: absolute;*/
+/*	top: 20%;*/
+/*	left: 60%;*/
+/*	height:40%;*/
+/*	width:35%;*/
+
+/*	text-align:center;*/
+/*	font-size:1.3em;*/
+/*}*/
+
+
 
 .streaming_button{
 	margin-top:15%;
@@ -227,9 +240,10 @@ li{
 /*}*/
 
 #player{
+	display: none;
 	z-index: 4;
 	position: absolute;
-	top: 100%;
+	top: 85%;
 	height: 15%;
 	width: 100%;
 	color: pink;

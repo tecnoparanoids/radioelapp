@@ -6,7 +6,7 @@ var rssLoaded = false;
 var playerShown = false;
 
 $(document).ready(function(){
-//	window.onerror = onError;
+
 	var streaming_button = document.getElementById('streaming_button');
 	streaming_button.addEventListener("click", function(){switchTab('streaming_tab','podcast_tab');}, false);	
 	
@@ -18,8 +18,8 @@ $(document).ready(function(){
 	player_hq.addEventListener("click", function(){playShow('radio_hq');}, false);
 	
 	
-	var player_sq = document.getElementById("player_sq");
-	player_sq.addEventListener("click", function(){playShow('radio_sq');}, false);
+//	var player_sq = document.getElementById("player_sq");
+//	player_sq.addEventListener("click", function(){playShow('radio_sq');}, false);
 	
 	var details = document.getElementById("details");
 	details.addEventListener("click", hideDescription, false);
@@ -130,7 +130,7 @@ var hideDescription = function(){
 
 var playShow = function (link){
 	
-	console.log("playShow: " + link);
+	console.log("playShow: " + link + " playerShown=" + playerShown);
 	var loading = document.getElementById("loading");
 	
 	if(!playerShown){
@@ -154,31 +154,23 @@ var playShow = function (link){
 	audio.addEventListener('error', onError, true);
 	
 	switch (link){
-		case "radio_sq":
-			if(audio.paused){
-				document.getElementById("play_sq").src = "img/pause.png";
-				audio.src = STREAMING_SQ;
-			}
-			else{
-				document.getElementById("play_sq").src = "img/play.png";
-				audio.pause();
-				$(loading).hide("slow");
-				$('#player').hide('slow');
-				playerShown = false;
-				return;
-			}
-		break;
+//		case "radio_sq":
+//			if(audio.paused){
+//				document.getElementById(element).className = "playing";
+//				audio.src = STREAMING_SQ;
+//			}
+//			else{
+//				stop(link);
+//				return;
+//			}
+//		break;
 		case "radio_hq":
 			if(audio.paused){
-				document.getElementById("play_hq").src = "img/pause.png";
+				document.getElementById("player_hq").className = "playing";
 				audio.src = STREAMING_HQ;
 			}		
 			else{
-				audio.pause();
-				document.getElementById("play_hq").src = "img/play.png";
-				$(loading).hide("slow");
-				$('#player').hide('slow');
-				playerShown = false;
+				stop(link);
 				return;
 			}
 		break;
@@ -188,7 +180,7 @@ var playShow = function (link){
 			document.getElementById("play_sq").src = "img/play.png";
 			document.getElementById("play_hq").src = "img/play.png";
 			audio.pause();
-			$('#player').animate({top:'+=15%'}, "slow");
+			$('#player').hide("slow");
 //			$('#loading').animate({top:'+=15%'}, 1000);
 			playerShown = false;
 			return;
@@ -209,11 +201,22 @@ var playShow = function (link){
 	audio.mozAudioChannelType = 'content';
 	audio.play();
 
-	console.log("Show player!");
 	if (!playerShown){
-		$('#player').animate({top:'-=15%'}, 1000);
+		console.log("Show player!");
+		$('#player').fadeIn("slow");
 		playerShown = true;
 	}
+};
+
+var stop = function(element){
+		var audio = document.getElementById('audio_player');
+		audio.pause();
+		audio.src="";
+		document.getElementById("player_hq").className = "paused";
+		$(loading).hide("slow");
+		$('#player').hide('slow');
+		playerShown = false;
+	
 };
 
 var downloadShow = function(link){
@@ -292,7 +295,7 @@ var onError = function(e) {
 	var audio = document.getElementById('audio_player');
 	audio.pause();
 	
-	$('#player').animate({top:'+=15%'}, 1000);
+	$('#player').hide("slow");
 	playerShown = false;
 	$(loading).delay(5000).fadeOut("normal");	
 	document.getElementById("play_sq").src = "img/play.png";	
