@@ -30,11 +30,11 @@ $(document).ready(function(){
 	var mute = document.getElementById("mute");
 	mute.addEventListener("click", function(){playShow('mute');}, false);
 	
-	var volumedown = document.getElementById("volumedown");
-	volumedown.addEventListener("click", function(){playShow('volumedown');}, false);
-	
-	var volumeup = document.getElementById("volumeup");
-	volumeup.addEventListener("click", function(){playShow('volumeup');}, false);
+//	var volumedown = document.getElementById("volumedown");
+//	volumedown.addEventListener("click", function(){playShow('volumedown');}, false);
+//	
+//	var volumeup = document.getElementById("volumeup");
+//	volumeup.addEventListener("click", function(){playShow('volumeup');}, false);
 });
 
 
@@ -175,14 +175,11 @@ var playShow = function (link){
 			}
 		break;
 		case "mute":
+			console.log("Mute: " + audio.muted);
+			audio.muted = !(audio.muted);
 		break;
 		case "stop":
-			document.getElementById("play_sq").src = "img/play.png";
-			document.getElementById("play_hq").src = "img/play.png";
-			audio.pause();
-			$('#player').hide("slow");
-//			$('#loading').animate({top:'+=15%'}, 1000);
-			playerShown = false;
+			stop();
 			return;
 		break;
 		case "volumeup":
@@ -298,7 +295,6 @@ var onError = function(e) {
 	$('#player').hide("slow");
 	playerShown = false;
 	$(loading).delay(5000).fadeOut("normal");	
-	document.getElementById("play_sq").src = "img/play.png";	
-	document.getElementById("play_hq").src = "img/play.png";	
+	document.getElementById("player_hq").className = "paused";
 };
 
