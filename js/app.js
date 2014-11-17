@@ -4,6 +4,7 @@ var STREAMING_SQ = "https://streaming.nodo50.org:2199/tunein/radioelastream.asx"
 
 var rssLoaded = false;
 var playerShown = false;
+var podcast = new Array();
 
 $(document).ready(function(){
 
@@ -37,6 +38,12 @@ $(document).ready(function(){
 //	volumeup.addEventListener("click", function(){playShow('volumeup');}, false);
 });
 
+function Episode () {
+	this.title = "";
+	this.logo = "";
+	this.description = "";
+	this.audio = "";
+}
 
 var parseRSS = function() {
 	$(loading).text('Descargando podcast...');
@@ -48,19 +55,22 @@ var parseRSS = function() {
 			var xml = data.responseData.xmlString;
 			var rss = data.responseData.feed;
 			var items = rss.entries || [];
-//	 		console.log(items);
-	  		for (var i = 0; i < items.length; i++) {
-				var entry = items[i];
-				var content = $(items[i].content).text();
+
+			//	 		console.log(items);
+//	  		for (var i = 0; i < items.length; i++) {
+//				var entry = items[i];
+//				var content = $(items[i].content).text();
 //	    		console.log(content);
-			}
-//	      console.log(xml);
-		  	var xmlDoc = $.parseXML(xml);
+//			}
+//	      		console.log(xml);
+		  	
+			var xmlDoc = $.parseXML(xml);
 		  	var thehtml = "";
 			$(xmlDoc).find("item").each(
 				function(i,e){
 //				console.log(e);
 				var img = "";
+				var episode = new Episode();
 				// miramos si el artículo lleva logo
 				if(e.childNodes[5].firstChild){
 					var data = e.childNodes[5].firstChild.data;
@@ -68,26 +78,29 @@ var parseRSS = function() {
 					var init = e.childNodes[5].firstChild.data.indexOf("src") + 5;
 					var end = e.childNodes[5].firstChild.data.indexOf("width") - 2;
 				
-					if (init != 4)
+					if (init != 4){
 						img = "<img src='" + data.substring(init,end) + "' class='episode_logo'>";
-				
+						episode.logo = data.substring(init,end);
+					}
 			  	}
-			  	
-			  	console.log(img);
-
-				thehtml += "<li class='item_list' >" + img + "<div onclick='showDescription(this)' class='link' >" +
-								$(e).find("title").text() + "<div class='description'>" + $(items[i].content).text() + 
-								"</div></div><div onclick='playShow(this)' class='play_episode' value='" + 
-								$(e).find("enclosure").attr('url') + "'></div>" + 
-				//      					"<div onclick='downloadShow(this)' value='" + $(e).find("enclosure").attr('url') + "' class='download' >" +
-								"<div class='download' onclick='downloadShow(this)' value='"+ $(e).find("enclosure").attr('url') + 
-								"'>" + //<a href='" + $(e).find("enclosure").attr('url') + "' download>" +
-								"</div><div class='clear'></div></li>";
+					
+				episode.title = $(e).find("title").text();
+			  	episode.description = $(items[i].content).text();
+				episode.audio = $(e).find("enclosure").attr('url');
+					
+				podcast[i] = episode;
 				
-				//		console.log("Agregado capítulo: " + thehtml);
-				//		console.log("Descripción: " + items[i].content);                
+				thehtml += "<li class='item_list' ><img src='" + episode.logo + "' class='episode_logo'>" +
+					"<div onclick='showDescription(" + i + ")' class='link' >" +
+					episode.title + "</div><div onclick='playShow(this)' class='play_episode' value='" + 
+					episode.audio + "'></div>" + "<div class='download' onclick='downloadShow(this)' ></div>" +
+					"<div class='clear'></div></li>";
 				}
 			);
+			for (i = 0; i < podcast.length; i++) {
+				console.log("Episode: " + podcast[i].title);
+			}
+			
 			$("#episodes").append(thehtml);	// TODO (puesto para probar): Optimizar esto, para que el append se haga solo una vez, no en cada ejecución del bucle
 			rssLoaded = true;
 			$(loading).fadeOut("slow");
@@ -110,18 +123,17 @@ var switchTab = function( idTab, idTabHide ){
 		parseRSS();
 };
 
-var showDescription = function(link){
-//	console.log($($(link).html()).text());
-	console.log($(link.querySelectorAll(".description")));
-	var description = $(link.querySelectorAll(".description")).text();
+var showDescription = function(indice){
+	var description = podcast[indice].description;
 	var details = document.getElementById("details");
-	console.log(description);
+//	console.log(description);
 	details.innerHTML = description;
 	
 	$("#details").fadeIn("slow");
 	$("#play_episode").fadeIn("slow");
 	$("#download").fadeIn("slow");
-	
+	document.getElementById("podcast_tab").scrollTop = 0;
+//	$("details").scrollTo(0,400);
 }
 
 var hideDescription = function(){
