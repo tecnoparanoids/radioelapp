@@ -6,48 +6,9 @@ var rssLoaded = false;
 var playerShown = false;
 var podcast = new Array();
 
-$(document).ready(function(){
-
-	var streaming_button = document.getElementById('streaming_button');
-	streaming_button.addEventListener("click", function(){switchTab('streaming_tab','podcast_tab');}, false);	
-	
-	var podcast_button = document.getElementById("podcast_button");
-	podcast_button.addEventListener("click", function(){switchTab('podcast_tab','streaming_tab');}, false);
-
-		
-	var player_hq = document.getElementById("player_hq");
-	player_hq.addEventListener("click", function(){playShow('radio_hq');}, false);
-	
-	
-//	var player_sq = document.getElementById("player_sq");
-//	player_sq.addEventListener("click", function(){playShow('radio_sq');}, false);
-	
-	var details = document.getElementById("details");
-	details.addEventListener("click", hideDescription, false);
-	
-	var stop = document.getElementById("stop");
-	stop.addEventListener("click", function(){playShow('stop');}, false);
-	
-	var mute = document.getElementById("mute");
-	mute.addEventListener("click", function(){playShow('mute');}, false);
-	
-//	var volumedown = document.getElementById("volumedown");
-//	volumedown.addEventListener("click", function(){playShow('volumedown');}, false);
-//	
-//	var volumeup = document.getElementById("volumeup");
-//	volumeup.addEventListener("click", function(){playShow('volumeup');}, false);
-});
-
-function Episode () {
-	this.title = "";
-	this.logo = "";
-	this.description = "";
-	this.audio = "";
-}
-
 var parseRSS = function() {
-	$(loading).text('Descargando podcast...');
-	$(loading).fadeIn("normal");
+//	$(loading).text('Descargando podcast...');
+//	$(loading).fadeIn("normal");
 	$.ajax({
 		url: 'http://ajax.googleapis.com/ajax/services/feed/load?v=1.0&output=json_xml&num=15&callback=?&q=' + encodeURIComponent(PODCAST_URL),
 		dataType: 'json',
@@ -83,7 +44,7 @@ var parseRSS = function() {
 						episode.logo = data.substring(init,end);
 					}
 			  	}
-					
+	
 				episode.title = $(e).find("title").text();
 			  	episode.description = $(items[i].content).text();
 				episode.audio = $(e).find("enclosure").attr('url');
@@ -113,14 +74,57 @@ var parseRSS = function() {
   });
 };
 
+
+$(document).ready(function(){
+
+	var streaming_button = document.getElementById('streaming_button');
+	streaming_button.addEventListener("click", function(){switchTab('streaming_tab','podcast_tab');}, false);	
+	
+	var podcast_button = document.getElementById("podcast_button");
+	podcast_button.addEventListener("click", function(){switchTab('podcast_tab','streaming_tab');}, false);
+
+		
+	var player_hq = document.getElementById("player_hq");
+	player_hq.addEventListener("click", function(){playShow('radio_hq');}, false);
+	
+	
+//	var player_sq = document.getElementById("player_sq");
+//	player_sq.addEventListener("click", function(){playShow('radio_sq');}, false);
+	
+	var details = document.getElementById("details");
+	details.addEventListener("click", hideDescription, false);
+	
+	var stop = document.getElementById("stop");
+	stop.addEventListener("click", function(){playShow('stop');}, false);
+	
+	var mute = document.getElementById("mute");
+	mute.addEventListener("click", function(){playShow('mute');}, false);
+	
+	parseRSS();
+	
+//	var volumedown = document.getElementById("volumedown");
+//	volumedown.addEventListener("click", function(){playShow('volumedown');}, false);
+//	
+//	var volumeup = document.getElementById("volumeup");
+//	volumeup.addEventListener("click", function(){playShow('volumeup');}, false);
+});
+
+function Episode () {
+	this.title = "";
+	this.logo = "";
+	this.description = "";
+	this.audio = "";
+}
+
+
 var switchTab = function( idTab, idTabHide ){
 
     console.log("switch tab: " + idTabHide + " --> " + idTab);
     document.getElementById(idTab).style.zIndex='2';
     document.getElementById(idTabHide).style.zIndex='1';
     
-    if ((!rssLoaded) && (idTab == "podcast_tab"))
-		parseRSS();
+//    if ((!rssLoaded) && (idTab == "podcast_tab"))
+		//parseRSS();
 };
 
 var showDescription = function(indice){
