@@ -1,6 +1,6 @@
 @import url("../fonts/opensans_semibold_macroman/stylesheet.css");
 @import url("../fonts/opensans_light_macroman/stylesheet.css");
-@import url("../fonts/Entypo/stylesheet.css");
+/*@import url("../fonts/Entypo/stylesheet.css");*/
 
 
 body{
@@ -76,23 +76,43 @@ audio{
 
 /*}*/
 
-.playing{
+#player_hq{
 	position: absolute;
-	width:40%;
-	height:28%;
-	top:30%;
-	left:35%;
-	background: url("../img/pause.png") no-repeat;
+	width:100%;
+	text-align: center;
+	margin-top: 30%;
+}
+
+.playing{
+
+}
+.playing:before{
+	content: '\e074' ;
+	font-size: 10em;
+	font-family: 'Glyphicons Halflings';
+	font-style: normal;
+	font-weight: normal;
+    line-height: 1;
+
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;	
 }
 
 .paused{
-	position: absolute;
-	width:40%;
-	height:28%;
-	top:30%;
-	left:35%;
-	background: url("../img/play.png") no-repeat;
+	
 }
+.paused:before{
+	content: '\e072' ;
+	font-size: 10em;
+	font-family: 'Glyphicons Halflings';
+	font-style: normal;
+	font-weight: normal;
+    line-height: 1;
+
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;	
+}
+
 
 /*#player_sq{*/
 /*	position: absolute;*/
@@ -205,9 +225,15 @@ audio{
 	margin-top: -0.2em;
 }
 .play_episode:before{
-	content: "▶";
-	font-family: "entypo";
-	font-size: 2em;
+	content: '\e072' ;
+	font-size: 1em;
+	font-family: 'Glyphicons Halflings';
+	font-style: normal;
+	font-weight: normal;
+    line-height: 1;
+
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 .download{
@@ -220,9 +246,15 @@ audio{
 	margin-top: -0.2em;
 }
 .download:before{
-	content: "💾";
-	font-family: "entypo";
-	font-size: 2em;
+	content: '\e139' ;
+	font-size: 1em;
+	font-family: 'Glyphicons Halflings';
+	font-style: normal;
+	font-weight: normal;
+    line-height: 1;
+
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 .description{
@@ -261,11 +293,33 @@ li{
 	top: 30%;
 	left: 15%;
 }
+div#mute:before{
+	content: '\e036' ;
+	font-size: 3em;
+	font-family: 'Glyphicons Halflings';
+	font-style: normal;
+	font-weight: normal;
+    line-height: 1;
+
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
 
 #stop{
 	position:absolute;
 	top: 30%;
 	left: 35%;	
+}
+div#stop:before{
+	content: '\e074' ;
+	font-size: 3em;
+	font-family: 'Glyphicons Halflings';
+	font-style: normal;
+	font-weight: normal;
+    line-height: 1;
+
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;	
 }
 
 #volumedown{
