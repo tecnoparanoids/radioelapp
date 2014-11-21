@@ -82,7 +82,7 @@ audio{
 	height:28%;
 	top:30%;
 	left:35%;
-	background-image: url("../img/pause.png");
+	background: url("../img/pause.png") no-repeat;
 }
 
 .paused{
@@ -91,7 +91,7 @@ audio{
 	height:28%;
 	top:30%;
 	left:35%;
-	background-image: url("../img/play.png");
+	background: url("../img/play.png") no-repeat;
 }
 
 /*#player_sq{*/
