@@ -37,6 +37,9 @@
     "device-storage:sdcard": {
       "description": "Permiso para descargar ficheros mp3 en la tarjeta SD",
       "access": "readwrite"
+    },
+    "systemXHR": {
+      "description" : "Required to access remote api"
     }
   }
 }
