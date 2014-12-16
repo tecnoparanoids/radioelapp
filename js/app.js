@@ -61,11 +61,8 @@ var parseRSS = function() {
 /*			for (i = 0; i < podcast.length; i++) {
 				console.log("Episode: " + podcast[i].title);
 			}
-<<<<<<< HEAD
-*/			
-=======
 
->>>>>>> 4176ed939fbc06d9dda2e0f1d4801674956f6dee
+*/			
 			$("#episodes").append(thehtml);	// TODO (puesto para probar): Optimizar esto, para que el append se haga solo una vez, no en cada ejecución del bucle
 			rssLoaded = true;
 			$(loading).fadeOut("slow");
@@ -246,7 +243,7 @@ var downloadShow = function(link){
 // ** OPCION 1: FIREFOX OS ** Necesitamos que la app sea privilegiada para acceder a la tarjeta sd
 //	console.log("Carpeta de música: " + cordova.file.externalApplicationStorageDirectory);
 	var fileURL = navigator.getDeviceStorage("sdcard");//.storageName + "temp.mp3";
-<<<<<<< HEAD
+
 	//console.log(link);
 	
 	var request = new XMLHttpRequest({mozSystem: true});
@@ -277,10 +274,6 @@ var downloadShow = function(link){
         
 	console.log("Mandamos peticion http");
         request.send();
-=======
-	console.log(fileURL);
-
->>>>>>> 4176ed939fbc06d9dda2e0f1d4801674956f6dee
 
 // ** OPCION 2: File System API ** Intenta ser un standar pero no lo implementa más que Chrome de momento
 //	function onInitFs(fs) {
