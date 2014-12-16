@@ -54,8 +54,9 @@ var parseRSS = function() {
 				thehtml += "<li class='item_list' ><img src='" + episode.logo + "' class='episode_logo'>" +
 					"<div onclick='showDescription(" + i + ")' class='link' >" +
 					episode.title + "</div><div onclick='playShow(this)' class='play_episode' value='" +
-					episode.audio + "'></div>" + "<div class='download' onclick='downloadShow(this)' ></div>" +
+					episode.audio + "'></div>" +
 					"<div class='clear'></div></li>";
+					// + "<div class='download' onclick='downloadShow(this)' ></div>" quitado
 				}
 			);
 /*			for (i = 0; i < podcast.length; i++) {
