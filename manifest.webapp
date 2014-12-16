@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "name": "Radio ELApp",
+  "name": "Radio ELA",
   "description": "Aplicación HTML5 de Radio ELA",
   "launch_path": "/index.html",
   "fullscreen": "false",
