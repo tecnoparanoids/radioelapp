@@ -24,7 +24,7 @@ var parseRSS = function() {
 //	    		console.log(content);
 //			}
 //	      		console.log(xml);
-		  	
+
 			var xmlDoc = $.parseXML(xml);
 		  	var thehtml = "";
 			$(xmlDoc).find("item").each(
@@ -35,25 +35,25 @@ var parseRSS = function() {
 				// miramos si el artículo lleva logo
 				if(e.childNodes[5].firstChild){
 					var data = e.childNodes[5].firstChild.data;
-									
+
 					var init = e.childNodes[5].firstChild.data.indexOf("src") + 5;
 					var end = e.childNodes[5].firstChild.data.indexOf("width") - 2;
-				
+
 					if (init != 4){
 						img = "<img src='" + data.substring(init,end) + "' class='episode_logo'>";
 						episode.logo = data.substring(init,end);
 					}
 			  	}
-	
+
 				episode.title = $(e).find("title").text();
 			  	episode.description = $(items[i].content).text();
 				episode.audio = $(e).find("enclosure").attr('url');
-					
+
 				podcast[i] = episode;
-				
+
 				thehtml += "<li class='item_list' ><img src='" + episode.logo + "' class='episode_logo'>" +
 					"<div onclick='showDescription(" + i + ")' class='link' >" +
-					episode.title + "</div><div onclick='playShow(this)' class='play_episode' value='" + 
+					episode.title + "</div><div onclick='playShow(this)' class='play_episode' value='" +
 					episode.audio + "'></div>" + "<div class='download' onclick='downloadShow(this)' ></div>" +
 					"<div class='clear'></div></li>";
 				}
@@ -61,7 +61,7 @@ var parseRSS = function() {
 			for (i = 0; i < podcast.length; i++) {
 				console.log("Episode: " + podcast[i].title);
 			}
-			
+
 			$("#episodes").append(thehtml);	// TODO (puesto para probar): Optimizar esto, para que el append se haga solo una vez, no en cada ejecución del bucle
 			rssLoaded = true;
 			$(loading).fadeOut("slow");
@@ -69,7 +69,7 @@ var parseRSS = function() {
     	error: function(){
 			console.log("Error en la descarga del podcast");
 			$(loading).text('Error en la descarga del podcast. Comprueba la conexión a internet');
-			$(loading).delay(5000).fadeOut("normal");	
+			$(loading).delay(5000).fadeOut("normal");
     	}
   });
 };
@@ -78,33 +78,33 @@ var parseRSS = function() {
 $(document).ready(function(){
 
 	var streaming_button = document.getElementById('streaming_button');
-	streaming_button.addEventListener("click", function(){switchTab('streaming_tab','podcast_tab');}, false);	
-	
-	var podcast_button = document.getElementById("podcast_button");
-	podcast_button.addEventListener("click", function(){switchTab('podcast_tab','streaming_tab');}, false);
+	streaming_button.addEventListener("click", function(){switchTab('streaming_tab','podcast_tab', 'streaming_button', 'podcast_button');}, false);
 
-		
+	var podcast_button = document.getElementById('podcast_button');
+	podcast_button.addEventListener("click", function(){switchTab('podcast_tab','streaming_tab', 'podcast_button', 'streaming_button');}, false);
+
+
 	var player_hq = document.getElementById("player_hq");
 	player_hq.addEventListener("click", function(){playShow('radio_hq');}, false);
-	
-	
+
+
 //	var player_sq = document.getElementById("player_sq");
 //	player_sq.addEventListener("click", function(){playShow('radio_sq');}, false);
-	
+
 	var details = document.getElementById("details");
 	details.addEventListener("click", hideDescription, false);
-	
+
 	var stop = document.getElementById("stop");
 	stop.addEventListener("click", function(){playShow('stop');}, false);
-	
+
 	var mute = document.getElementById("mute");
 	mute.addEventListener("click", function(){playShow('mute');}, false);
-	
+
 	parseRSS();
-	
+
 //	var volumedown = document.getElementById("volumedown");
 //	volumedown.addEventListener("click", function(){playShow('volumedown');}, false);
-//	
+//
 //	var volumeup = document.getElementById("volumeup");
 //	volumeup.addEventListener("click", function(){playShow('volumeup');}, false);
 });
@@ -117,12 +117,14 @@ function Episode () {
 }
 
 
-var switchTab = function( idTab, idTabHide ){
+var switchTab = function( idTab, idTabHide, idButtonTab, idButtonTabHide){
 
     console.log("switch tab: " + idTabHide + " --> " + idTab);
-    document.getElementById(idTab).style.zIndex='2';
-    document.getElementById(idTabHide).style.zIndex='1';
-    
+    document.getElementById(idTab).className = "active";
+    document.getElementById(idButtonTab).className = "activelink";
+    document.getElementById(idTabHide).className = "inactive";
+    document.getElementById(idButtonTabHide).className = "inactivelink";
+
 //    if ((!rssLoaded) && (idTab == "podcast_tab"))
 		//parseRSS();
 };
@@ -132,7 +134,7 @@ var showDescription = function(indice){
 	var details = document.getElementById("details");
 //	console.log(description);
 	details.innerHTML = description;
-	
+
 	$("#details").fadeIn("slow");
 	$("#play_episode").fadeIn("slow");
 	$("#download").fadeIn("slow");
@@ -145,19 +147,19 @@ var hideDescription = function(){
 }
 
 var playShow = function (link){
-	
+
 	console.log("playShow: " + link + " playerShown=" + playerShown);
 	var loading = document.getElementById("loading");
-	
+
 	if(!playerShown){
 		// Mostramos mensaje de "Cargando..."
 //		$(document.getElementById("loading")).animate({top:'-=15%'}, 1000);
 		$(loading).text('Cargando audio...');
 		$(loading).fadeIn("normal");
 	}
-	
+
 	var audio = document.getElementById('audio_player');
-	
+
 	console.log("audio.paused = " + audio.paused);
 	audio.addEventListener("playing", function(){
 					console.log("playing - hide loading");
@@ -166,9 +168,9 @@ var playShow = function (link){
 //						$(document.getElementById("loading")).animate({top:'+=15%'}, 1000);
 					}
 				}, true);
-	
+
 	audio.addEventListener('error', onError, true);
-	
+
 	switch (link){
 //		case "radio_sq":
 //			if(audio.paused){
@@ -184,7 +186,7 @@ var playShow = function (link){
 			if(audio.paused){
 				document.getElementById("player_hq").className = "playing";
 				audio.src = STREAMING_HQ;
-			}		
+			}
 			else{
 				stop(link);
 				return;
@@ -208,7 +210,7 @@ var playShow = function (link){
 		break;
 		default:
 			audio.src = $(link).attr('value');
-			
+
 	}
 	console.log("PLAY!!!! " + audio.src);
 	audio.mozAudioChannelType = 'content';
@@ -229,7 +231,7 @@ var stop = function(element){
 		$(loading).hide("slow");
 		$('#player').hide('slow');
 		playerShown = false;
-	
+
 };
 
 var downloadShow = function(link){
@@ -241,7 +243,7 @@ var downloadShow = function(link){
 //	console.log("Carpeta de música: " + cordova.file.externalApplicationStorageDirectory);
 	var fileURL = navigator.getDeviceStorage("sdcard");//.storageName + "temp.mp3";
 	console.log(fileURL);
-	
+
 
 // ** OPCION 2: File System API ** Intenta ser un standar pero no lo implementa más que Chrome de momento
 //	function onInitFs(fs) {
@@ -304,13 +306,13 @@ var onError = function(e) {
 		   $(loading).text('Se ha producido un error');
 		break;
 	}
-	
+
 	var audio = document.getElementById('audio_player');
 	audio.pause();
-	
+
 	$('#player').hide("slow");
 	playerShown = false;
-	$(loading).delay(5000).fadeOut("normal");	
+	$(loading).delay(5000).fadeOut("normal");
 	document.getElementById("player_hq").className = "paused";
 };
 

@@ -15,7 +15,7 @@ body{
 	font-family: 'open_sanssemibold';
 	height: 10%;
 	width: 100%;
-	background-color: #00AACC;
+	background-color: #333;
 	color:#F4F4F4;
 	text-align: center;
 	font-size: 2em;
@@ -38,20 +38,39 @@ body{
 	height:100%;
 	width:50%;
 	float:left;
-	background-color:#A6A6A6;
 	padding-top: 0.3em;
 	padding-bottom: 0.3em;
-}
 
+}
+.button{
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	padding: 3px;
+	width: 75%;
+	margin-top: 7px;
+	text-align: center;
+	background: #eee;
+	font-size: 0.8em;
+	color: #333;
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	border-radius: 4px;
+
+}
 #podcast_button {
 	margin:0;
 	height:100%;
 	width:50%;
 	float: right;
-	background-color:#F4F4F4;
 	color:#A6A6A6;
 	padding-top: 0.3em;
 	padding-bottom: 0.3em;
+}
+
+#streaming_button.inactive{
+	background: url(../img/background-tolex.jpg) center center repeat fixed;
+
 }
 
 #name{
@@ -59,14 +78,38 @@ body{
 }
 
 #streaming_tab{
+	z-index: 2;
 	clear: both;
 	position: absolute;
-	z-index:3;
 	height: 100%;
 	width: 100%;
-	background-color:#A6A6A6;
+	background: url(../img/background-tolex.jpg) center center repeat fixed;
 }
 
+#podcast_tab{
+	position: absolute;
+	height: 100%;
+	width: 100%;
+	overflow-y: scroll;
+	background: url(../img/background-tolex-b.jpg) center center repeat fixed;
+}
+
+.activelink{
+	opacity: 1;
+    filter: alpha(opacity=1); /* For IE8 and earlier */
+    font-size: 1.3em;
+    font-weight: bold;
+}
+.activelink .button{
+	background: none;
+	color:#fff;
+	margin-top: 2px;
+}
+.inactivelink{
+	opacity: 0.9;
+    filter: alpha(opacity=90); /* For IE8 and earlier */
+
+}
 
 audio{
 /*	display:none;*/
@@ -95,11 +138,11 @@ audio{
     line-height: 1;
 
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;	
+  -moz-osx-font-smoothing: grayscale;
 }
 
 .paused{
-	
+
 }
 .paused:before{
 	content: '\e072' ;
@@ -110,9 +153,15 @@ audio{
     line-height: 1;
 
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;	
+  -moz-osx-font-smoothing: grayscale;
 }
 
+.active{
+	z-index: 2 !important;
+}
+.inactive{
+	z-index: 1 !important;
+}
 
 /*#player_sq{*/
 /*	position: absolute;*/
@@ -150,20 +199,8 @@ audio{
 	display: none;
 }
 
-#podcast_tab{
-	z-index:2;
-	position: absolute;
-	height: 100%;
-	width: 100%;
-	background-color:white;
-	margin-top: 2.5em;
-	background-color: #f4f4f4;
-	overflow-y: scroll;
-}
-
 #details{
 	display: none;
-	z-index: 2;
 	position: absolute;
 	margin:auto;
 	padding: 5%;
@@ -184,12 +221,13 @@ audio{
 	clear:both;
 	padding: 0;
 	margin: 0;
-	margin-top: 1em;
+	margin-top: 50px;
+	margin-bottom: 40px;
 	left: 0%;
 	list-style-type: none;
 	position: absolute;
-	background-color: #f4f4f4;
 	color:#2C393B;
+
 }
 
 .episode_logo{
@@ -308,7 +346,7 @@ div#mute:before{
 #stop{
 	position:absolute;
 	top: 30%;
-	left: 35%;	
+	left: 35%;
 }
 div#stop:before{
 	content: '\e074' ;
@@ -319,7 +357,7 @@ div#stop:before{
     line-height: 1;
 
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;	
+  -moz-osx-font-smoothing: grayscale;
 }
 
 #volumedown{
@@ -331,7 +369,7 @@ div#stop:before{
 #volumeup{
 	position:absolute;
 	top: 30%;
-	left: 75%;	
+	left: 75%;
 }
 
 
