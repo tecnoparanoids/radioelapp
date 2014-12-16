@@ -30,7 +30,7 @@ var parseRSS = function() {
 			$(xmlDoc).find("item").each(
 				function(i,e){
 //				console.log(e);
-				var img = "";	
+				var img = "";
 				var episode = new Episode();
 				// miramos si el artículo lleva logo
 				if(e.childNodes[5].firstChild){
@@ -63,7 +63,7 @@ var parseRSS = function() {
 				console.log("Episode: " + podcast[i].title);
 			}
 
-*/			
+*/
 			$("#episodes").append(thehtml);	// TODO (puesto para probar): Optimizar esto, para que el append se haga solo una vez, no en cada ejecución del bucle
 			rssLoaded = true;
 			$(loading).fadeOut("slow");
@@ -113,7 +113,7 @@ $(document).ready(function(){
 
 function Episode () {
 	this.title = "";
-	this.logo = ""; 	// aquí irá la ruta para el logo por defecto de los episodios del podcast
+	this.logo = "img/dipolos.png"; 	// aquí irá la ruta para el logo por defecto de los episodios del podcast
 	this.description = "";
 	this.audio = "";
 }
@@ -246,7 +246,7 @@ var downloadShow = function(link){
 	var fileURL = navigator.getDeviceStorage("sdcard");//.storageName + "temp.mp3";
 
 	//console.log(link);
-	
+
 	var request = new XMLHttpRequest({mozSystem: true});
 	request.responseType = "arraybuffer";
 	request.onload = function() {
@@ -262,7 +262,7 @@ var downloadShow = function(link){
                         console.log("error en la descarga: " + request.readyState);
                 }
         };
-	
+
         request.onreadystatechange  = function() {
 		console.log(request.response);
                 console.log("Estado: " + request.readyState + "/" + request.status);
@@ -272,7 +272,7 @@ var downloadShow = function(link){
         };
 	request.open("GET", "http://archive.org/download/tecnoparanoids_21_noticias/tecnoparanoids_21_noticias.mp3", true);
 	//request.overrideMimeType("text/plain; charset=x-user-defined");
-        
+
 	console.log("Mandamos peticion http");
         request.send();
 
