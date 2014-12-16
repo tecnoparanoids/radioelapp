@@ -5,9 +5,8 @@
   "launch_path": "/index.html",
   "fullscreen": "false",
   "icons": {
-    "16": "/img/radioelablog_txiki.jpg",
-    "48": "/img/radioelablog_txiki.jpg",
-    "128": "/img/radioelablog_txiki.jpg"
+    "128": "/img/icon-128.png",
+    "512": "/img/icon-512.png"
   },
   "developer": {
     "name": "ELA-dev",
