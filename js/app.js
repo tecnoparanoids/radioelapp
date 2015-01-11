@@ -165,7 +165,7 @@ var playShow = function (link){
 	audio.addEventListener("playing", function(){
 					console.log("playing - hide loading");
 					if(playerShown){
-						$(loading).hide("slow");
+						$(loading).fadeOut();
 //						$(document.getElementById("loading")).animate({top:'+=15%'}, 1000);
 					}
 				}, true);
@@ -229,8 +229,8 @@ var stop = function(element){
 		audio.pause();
 		audio.src="";
 		document.getElementById("player_hq").className = "paused";
-		$(loading).hide("slow");
-		$('#player').hide('slow');
+		$('#loading').slideDown();
+		$('#player').slideDown();
 		playerShown = false;
 
 };
