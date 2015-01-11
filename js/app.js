@@ -261,7 +261,7 @@ var onError = function(e) {
 	var audio = document.getElementById('audio_player');
 	audio.pause();
 
-	$('#player').hide("slow");
+	$('#player').slideDown();
 	playerShown = false;
 	$(loading).delay(5000).fadeOut("normal");
 	document.getElementById("player_hq").className = "paused";

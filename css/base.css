@@ -12,13 +12,20 @@ body{
 }
 
 #header{
-	font-family: 'open_sanssemibold';
+	font-family: 'open_sanslight';
 	height: 10%;
 	width: 100%;
-	background-color: #333;
-	color:#F4F4F4;
+	background-color: #eee ;
+	color:#724E36;
 	text-align: center;
-	font-size: 2em;
+	font-size: 1.6em;
+	padding: 5px;
+	
+-webkit-box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.75);
+-moz-box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.75);
+box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.75);
+
+/*sombra cabecera*/
 }
 
 #buttons{
@@ -323,11 +330,13 @@ li{
 	display: none;
 	z-index: 4;
 	position: absolute;
+	line-height: 2;
 	top: 85%;
 	height: 15%;
 	width: 100%;
-	color: pink;
-	background-color: #008EAB;
+	background-color: #eee;
+	color: #724E36;
+	text-align: center;
 }
 
 .player_button{
@@ -337,34 +346,34 @@ li{
 }
 
 #mute{
-	position:absolute;
-	top: 30%;
-	left: 15%;
+	margin-left: 10px;
+	margin-right: 10px;
+	padding-top: 15px;
+	display: inline;
 }
 div#mute:before{
 	content: '\e036' ;
-	font-size: 3em;
+	font-size: 2.5em;
 	font-family: 'Glyphicons Halflings';
 	font-style: normal;
 	font-weight: normal;
-    line-height: 1;
 
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 #stop{
-	position:absolute;
-	top: 30%;
-	left: 35%;
+	margin-left: 10px;
+	margin-right: 10px;
+	padding-top: 15px;
+	display: inline;
 }
 div#stop:before{
 	content: '\e074' ;
-	font-size: 3em;
+	font-size: 2.5em;
 	font-family: 'Glyphicons Halflings';
 	font-style: normal;
 	font-weight: normal;
-    line-height: 1;
 
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -393,10 +402,11 @@ div#stop:before{
 	opaciy: 0.4;
 	color: white;
 	text-align:center;
-	font-size:1.2em;
-	font-weight: bold;
+	font-size:1em;
+	font-weight: normal;
 	line-height: 100%;
 	vertical-align: middle;
 	background-color: black;
+	padding-top: 5px;
 }
 .clear{clear: both}
