@@ -54,9 +54,8 @@ var parseRSS = function() {
 				thehtml += "<li class='item_list' ><img src='" + episode.logo + "' class='episode_logo'>" +
 					"<div onclick='showDescription(" + i + ")' class='link' >" +
 					episode.title + "</div><div onclick='playShow(this)' class='play_episode' value='" +
-					episode.audio + "'></div><a class='download' href='" + episode.audio + "' download='temp.mp3'>desc</a>" +
+					episode.audio + "'></div>" +
 					"<div class='clear'></div></li>";
-					// + "<div class='download' onclick='downloadShow(this)' ></div>" quitado
 				}
 			);
 /*			for (i = 0; i < podcast.length; i++) {
@@ -236,85 +235,6 @@ var stop = function(element){
 
 };
 
-var downloadShow = function(link){
-
-// No hay de momento una solución standar que sea multiplataforma para la descarga y almacenamiento de ficheros
-
-
-// ** OPCION 1: FIREFOX OS ** Necesitamos que la app sea privilegiada para acceder a la tarjeta sd
-//	console.log("Carpeta de música: " + cordova.file.externalApplicationStorageDirectory);
-	var fileURL = navigator.getDeviceStorage("sdcard");//.storageName + "temp.mp3";
-
-	//console.log(link);
-	
-	var request = new XMLHttpRequest({mozSystem: true});
-	request.responseType = "arraybuffer";
-	request.onload = function() {
-		console.log("onload: " + request.responseText);
-                if (request.readyState === 4) {
-                        // _this._setAudioType(_this.get('audioURL'));
-			if(request.status === 200){
-				console.log("Descarga completada! link");
-                        	//_this._loadComplete = true;
-			}
-                }
-                else{
-                        console.log("error en la descarga: " + request.readyState);
-                }
-        };
-	
-        request.onreadystatechange  = function() {
-		console.log(request.response);
-                console.log("Estado: " + request.readyState + "/" + request.status);
-        };
-	request.onerror  = function(e) {
-                console.log("Error: " + e.target.statusText);
-        };
-	request.open("GET", "http://archive.org/download/tecnoparanoids_21_noticias/tecnoparanoids_21_noticias.mp3", true);
-	//request.overrideMimeType("text/plain; charset=x-user-defined");
-        
-	console.log("Mandamos peticion http");
-        request.send();
-
-// ** OPCION 2: File System API ** Intenta ser un standar pero no lo implementa más que Chrome de momento
-//	function onInitFs(fs) {
-//	  console.log('Opened file system: ' + fs.name);
-//	}
-
-//	console.log("window.requestFileSystem: " + window.requestFileSystem);
-//	window.requestFileSystem(window.TEMPORARY, 5*1024*1024 /*5MB*/, onInitFs, onError);
-
-
-
-// 	** OPCION 3: org.apache.cordova.file-transfer ** No soportado aún en Firefox OS, pero es la que mejor pinta tiene
-/*
-	var fileTransfer = new FileTransfer();
-
-	var uri = encodeURI($(link).attr('value'));
-	var fileName = fileURL.substr(fileURL.lastIndexOf('/')+1);
-
-	console.log("fileUrl: " + fileURL + " fileName; " + fileName);
-
-	fileTransfer.download(
-		uri,
-		fileURL,
-		function(entry) {
-		    console.log("download complete: " + entry.toURL());
-		},
-		function(error) {
-		    console.log("download error source " + error.source);
-		    console.log("download error target " + error.target);
-		    console.log("upload error code" + error.code);
-		},
-		false,
-		{
-		    headers: {
-		        "Authorization": "Basic dGVzdHVzZXJuYW1lOnRlc3RwYXNzd29yZA=="
-		    }
-		}
-	);
-	*/
-};
 
 var onError = function(e) {
 
