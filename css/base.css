@@ -126,6 +126,14 @@ box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.75);
 	color: #fff;
 }
 
+#loading.activelink .button{
+	color: #724e36;
+}
+#loading.inactivelink .button{
+	background: #724e36;
+	color: #fff;
+}
+
 audio{
 /*	display:none;*/
 }
@@ -401,13 +409,13 @@ div#stop:before{
 	height: 15%;
 	width: 100%;
 	opaciy: 0.4;
-	color: white;
+	color: #724e36;
 	text-align:center;
 	font-size:1em;
 	font-weight: normal;
 	line-height: 100%;
 	vertical-align: middle;
-	background-color: black;
+	background: #fff;
 	padding-top: 5px;
 }
 .clear{clear: both}

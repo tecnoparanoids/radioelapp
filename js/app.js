@@ -126,8 +126,10 @@ var switchTab = function( idTab, idTabHide, idButtonTab, idButtonTabHide){
     document.getElementById(idTabHide).className = "inactive";
     document.getElementById(idButtonTabHide).className = "inactivelink";
 
-//    if ((!rssLoaded) && (idTab == "podcast_tab"))
-		//parseRSS();
+    	if (idTab == "podcast_tab")
+	    	document.getElementById("loading").className = "activelink";
+	else
+		document.getElementById("loading").className = "inactivelink";
 };
 
 var showDescription = function(indice){
@@ -155,20 +157,22 @@ var playShow = function (link){
 	if(!playerShown){
 		// Mostramos mensaje de "Cargando..."
 //		$(document.getElementById("loading")).animate({top:'-=15%'}, 1000);
-		$(loading).text('Cargando audio...');
-		$(loading).fadeIn("normal");
+		$("#loading").text('Cargando audio...');
+		$("#loading").slideUp();
 	}
 
 	var audio = document.getElementById('audio_player');
 
 	console.log("audio.paused = " + audio.paused);
 	audio.addEventListener("playing", function(){
-					console.log("playing - hide loading");
-					if(playerShown){
-						$(loading).fadeOut();
-//						$(document.getElementById("loading")).animate({top:'+=15%'}, 1000);
-					}
-				}, true);
+		console.log("playing - hide loading: " + playerShown);
+			if(!playerShown){
+				console.log("Show player!");
+				$("#player").fadeIn();
+				playerShown = true;
+			}
+			$("#loading").fadeOut();							
+		}, true);
 
 	audio.addEventListener('error', onError, true);
 
@@ -187,6 +191,7 @@ var playShow = function (link){
 			if(audio.paused){
 				document.getElementById("player_hq").className = "playing";
 				audio.src = STREAMING_HQ;
+				$("#loading").fadeIn();
 			}
 			else{
 				stop(link);
@@ -210,26 +215,21 @@ var playShow = function (link){
 			return;
 		break;
 		default:
+			$("#loading").fadeIn();			
 			audio.src = $(link).attr('value');
 
 	}
 	console.log("PLAY!!!! " + audio.src);
 	audio.mozAudioChannelType = 'content';
 	audio.play();
-
-	if (!playerShown){
-		console.log("Show player!");
-		$('#player').fadeIn("slow");
-		playerShown = true;
-	}
 };
 
 var stop = function(element){
 		var audio = document.getElementById('audio_player');
 		audio.pause();
-		audio.src="";
+		audio.src= "";
 		document.getElementById("player_hq").className = "paused";
-		$('#loading').slideDown();
+		$("#loading").fadeOut();	
 		$('#player').slideDown();
 		playerShown = false;
 
@@ -261,8 +261,8 @@ var onError = function(e) {
 	var audio = document.getElementById('audio_player');
 	audio.pause();
 	playerShown = false;
-	$('#loading').slideDown();
-	$('#player').slideDown();
+	$("#loading").fadeOut();
+	$("#player").fadeOut();
 	document.getElementById("player_hq").className = "paused";
 };
 
