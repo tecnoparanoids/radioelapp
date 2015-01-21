@@ -251,7 +251,7 @@ var onError = function(e) {
 		   $(loading).text('Error de decodificación');
 		break;
 		case e.target.error.MEDIA_ERR_SRC_NOT_SUPPORTED:
-		   $(loading).text('Error. Asegúrate de tener los datos activados');
+		   //$(loading).text('Error. Asegúrate de tener los datos activados');
 		break;
 		default:
 		   $(loading).text('Se ha producido un error');
@@ -260,10 +260,9 @@ var onError = function(e) {
 
 	var audio = document.getElementById('audio_player');
 	audio.pause();
-
-	$('#player').slideDown();
 	playerShown = false;
-	$(loading).delay(5000).fadeOut("normal");
+	$('#loading').slideDown();
+	$('#player').slideDown();
 	document.getElementById("player_hq").className = "paused";
 };
 
