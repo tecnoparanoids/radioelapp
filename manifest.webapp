@@ -3,7 +3,6 @@
   "name": "Radio ELA",
   "description": "Aplicación HTML5 de Radio ELA",
   "launch_path": "/index.html",
-  "fullscreen": "false",
   "icons": {
     "128": "/img/icon-128.png",
     "512": "/img/icon-512.png"

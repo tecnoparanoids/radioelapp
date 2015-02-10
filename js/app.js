@@ -7,8 +7,7 @@ var playerShown = false;
 var podcast = new Array();
 
 var parseRSS = function() {
-//	$(loading).text('Descargando podcast...');
-//	$(loading).fadeIn("normal");
+	
 	$.ajax({
 		url: 'http://ajax.googleapis.com/ajax/services/feed/load?v=1.0&output=json_xml&num=15&callback=?&q=' + encodeURIComponent(PODCAST_URL),
 		dataType: 'json',
@@ -87,10 +86,6 @@ $(document).ready(function(){
 
 	var player_hq = document.getElementById("player_hq");
 	player_hq.addEventListener("click", function(){playShow('radio_hq');}, false);
- 
-
-//	var player_sq = document.getElementById("player_sq");
-//	player_sq.addEventListener("click", function(){playShow('radio_sq');}, false);
 
 	var details = document.getElementById("details");
 	details.addEventListener("click", hideDescription, false);
@@ -103,16 +98,11 @@ $(document).ready(function(){
 
 	parseRSS();
 
-//	var volumedown = document.getElementById("volumedown");
-//	volumedown.addEventListener("click", function(){playShow('volumedown');}, false);
-//
-//	var volumeup = document.getElementById("volumeup");
-//	volumeup.addEventListener("click", function(){playShow('volumeup');}, false);
 });
 
 function Episode () {
 	this.title = "";
-	this.logo = "img/dipolos.png"; 	// aquí irá la ruta para el logo por defecto de los episodios del podcast
+	this.logo = "img/dipolos.png"; 	// la ruta para el logo por defecto de los episodios del podcast
 	this.description = "";
 	this.audio = "";
 }
@@ -142,7 +132,6 @@ var showDescription = function(indice){
 	$("#play_episode").fadeIn("slow");
 	$("#download").fadeIn("slow");
 	document.getElementById("podcast_tab").scrollTop = 0;
-//	$("details").scrollTo(0,400);
 }
 
 var hideDescription = function(){
@@ -156,7 +145,6 @@ var playShow = function (link){
 
 	if(!playerShown){
 		// Mostramos mensaje de "Cargando..."
-//		$(document.getElementById("loading")).animate({top:'-=15%'}, 1000);
 		$("#loading").text('Cargando audio...');
 		$("#loading").slideUp();
 	}
@@ -177,16 +165,7 @@ var playShow = function (link){
 	audio.addEventListener('error', onError, true);
 
 	switch (link){
-//		case "radio_sq":
-//			if(audio.paused){
-//				document.getElementById(element).className = "playing";
-//				audio.src = STREAMING_SQ;
-//			}
-//			else{
-//				stop(link);
-//				return;
-//			}
-//		break;
+
 		case "radio_hq":
 			if(audio.paused){
 				document.getElementById("player_hq").className = "playing";

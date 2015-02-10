@@ -138,10 +138,6 @@ audio{
 /*	display:none;*/
 }
 
-/*#player_hq{*/
-
-/*}*/
-
 #player_hq{
 	position: absolute;
 	width:100%;
@@ -185,19 +181,6 @@ audio{
 .inactive{
 	z-index: 1 !important;
 }
-
-/*#player_sq{*/
-/*	position: absolute;*/
-/*	top: 20%;*/
-/*	left: 60%;*/
-/*	height:40%;*/
-/*	width:35%;*/
-
-/*	text-align:center;*/
-/*	font-size:1.3em;*/
-/*}*/
-
-
 
 .streaming_button{
 	margin-top:15%;
@@ -330,11 +313,6 @@ li{
 	padding-bottom: 0.3em;
 }
 
-/*a{*/
-/*	margin: 0%;*/
-/*	font-size:1em;*/
-/*}*/
-
 #player{
 	display: none;
 	z-index: 4;
@@ -386,18 +364,6 @@ div#stop:before{
 
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-}
-
-#volumedown{
-	position:absolute;
-	top: 30%;
-	left: 55%;
-}
-
-#volumeup{
-	position:absolute;
-	top: 30%;
-	left: 75%;
 }
 
 
