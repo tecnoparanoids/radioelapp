@@ -28,14 +28,6 @@
     "audio-channel-content": {
       "description": "Use the audio channel for the music player"
     },
-    "device-storage:music": {
-      "description": "Permiso para escribir en la carpeta de almacenamiento de música",
-      "access": "readwrite"
-    },
-    "device-storage:sdcard": {
-      "description": "Permiso para descargar ficheros mp3 en la tarjeta SD",
-      "access": "readwrite"
-    },
     "systemXHR": {
       "description" : "Required to access remote api"
     }
