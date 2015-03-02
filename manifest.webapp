@@ -4,8 +4,8 @@
   "description": "Aplicación HTML5 de Radio ELA",
   "launch_path": "/index.html",
   "icons": {
-    "128": "/img/icon-128.png",
-    "512": "/img/icon-512.png"
+    "128": "./img/icon-128.png",
+    "512": "./img/icon-512.png"
   },
   "developer": {
     "name": "ELA-dev",
