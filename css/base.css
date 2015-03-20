@@ -126,18 +126,47 @@ audio{
 
 /*}*/
 
-#player_hq{
+#schedule{
+	top: 4em;
+	display: inline;
 	position: absolute;
-	width:100%;
+	list-style-type: none;
 	text-align: center;
-	margin-top: 30%;
+	color:#eeeeee;
+}
+
+.schedule_item{
+	width:100%;
+	border-bottom: 1px solid  #00AACC;
+	padding-top: 0.5em;
+	padding-bottom: 0.7em;
+	margin: 1em;
+	margin-bottom: 0;
+	margin-top: 0.5em;
+	clear: both;
+	font-size:1em;
+}
+
+#startTime{
+	display: inline;
+}
+#endTime{
+	display: inline;
+}
+#showName{
+	display: inline;
+}
+
+#player_hq{
+	background-color: #EAEAE7;
+	color: #724e36;
+	height: 3em;
 }
 
 .playing{
 
 }
 .playing:before{
-	content: '\e074' ;
 	font-size: 10em;
 	font-family: 'Glyphicons Halflings';
 	font-style: normal;
@@ -152,7 +181,6 @@ audio{
 
 }
 .paused:before{
-	content: '\e072' ;
 	font-size: 10em;
 	font-family: 'Glyphicons Halflings';
 	font-style: normal;
@@ -269,7 +297,7 @@ audio{
 	width: 1.1em;
 	height: 1.1em;
 	font-size: 2em;
-	margin-left: 0.3em;
+	/*margin-left: 0.2em;*/
 	margin-top: -0.2em;
 }
 .play_episode:before{

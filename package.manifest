@@ -1,9 +1,0 @@
-{
-    "name": "Radio ELApp",
-    "package_path" : "http://tecnoparanoids.github.io/radioelapp.zip",
-    "version": "1",
-    "developer": {
-        "name": "ELA-dev",
-        "url": "http://radioela.org"
-    }
-}
